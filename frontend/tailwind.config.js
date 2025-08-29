@@ -1,15 +1,38 @@
+// /** @type {import('tailwindcss').Config} */
+// export default {
+//   content: [
+//     "./index.html",
+//     "./src/**/*.{js,ts,jsx,tsx}",
+//   ],
+//   theme: {
+//     extend: {
+//       colors: {
+//         'primary': "#5f6FFF"   
+//       },
+//       gridTemplateColumns: {
+//         'auto': 'repeat(auto-fit, minmax(200px, 1fr))'
+//       }
+//     },
+//   },
+//   plugins: [],
+// }
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}", // <- tells Tailwind where to scan classes
   ],
   theme: {
     extend: {
       colors: {
-        'primary': "#5f6FFF"   
+        primary: "#5f6FFF",
+      },
+      gridTemplateColumns: {
+        auto: "repeat(auto-fit, minmax(200px, 1fr))",
       },
     },
   },
   plugins: [],
 }
+
