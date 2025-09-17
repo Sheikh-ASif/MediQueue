@@ -1,11 +1,13 @@
 import express from 'express';
+import authAdmin from '../middlewares/authAdmin.js';
 
-import { addDoctor } from '../controllers/adminController.js';
+import { addDoctor, loginAdmin } from '../controllers/adminController.js';
 import upload from '../middlewares/multer.js';
 
 const adminRouter = express.Router();
 
-adminRouter.post('/add-doctor',upload.single('image'),addDoctor);
+adminRouter.post('/add-doctor',authAdmin,upload.single('image'),addDoctor);
+adminRouter.post('/login',loginAdmin);
 
 
 
