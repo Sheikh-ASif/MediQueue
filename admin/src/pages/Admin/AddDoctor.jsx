@@ -70,7 +70,7 @@ const AddDoctor = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <form onSubmit={onSubmitHandler} className="w-full max-w-4xl">
-        <p className="mt-5 mb-6 text-3xl font-bold  text-gray-800">
+        <p className=" mt-5 mb-6 text-3xl font-bold  text-gray-800">
           ➕ Add Doctor
         </p>
 
