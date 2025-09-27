@@ -18,6 +18,15 @@ connectCloudinary()
 app.use(express.json())
 app.use(cors())
 
+// {
+// //  this is the working middleware because  in above middleware we 
+// //     not decalare the port yet that why we are getting the cors policy error 
+//     app.use(cors({
+//   origin: ["http://localhost:5173", "http://localhost:5174"],
+//   credentials: true
+// }));
+// }
+
 //Api endpoints
 app.use('/api/admin',adminRouter)
 app.use('/api/doctor',doctorRouter)
