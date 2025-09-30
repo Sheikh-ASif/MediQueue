@@ -46,12 +46,29 @@ const Appointment = () => {
       let timeSlots = [];
       while (currentDate < endTime) {
         let formattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        // Example logic: all slots available
-        timeSlots.push({
+
+        let day = currentDate.getDate()
+        let month = currentDate.getMonth()+1
+        let year = currentDate.getFullYear()
+
+        const slotDate = day + "_" + month + "_" + year
+        const slotTime = formattedTime
+
+        const isSlotAvailable = docInfo.slots_booked[slotDate] && docInfo.slots_booked[slotDate].includes(slotTime) ? false : true
+
+
+        if (isSlotAvailable) {
+           timeSlots.push({
           datetime: new Date(currentDate),
           time: formattedTime,
           available: true // Here you can implement your real logic
         });
+        }
+
+
+
+      
+        // Example logic: all slots available
         currentDate.setMinutes(currentDate.getMinutes() + 30);
       }
       setDocSlots(prev => ([...prev, timeSlots]));
@@ -74,8 +91,8 @@ const Appointment = () => {
       let month = date.getMonth() +  1
       let year = date.getFullYear()
 
-      // const slotDate = day + "_" + month + "_" + year
-      const slotDate = date.toISOString().split('T')[0] // "YYYY-MM-DD"
+      const slotDate = day + "_" + month + "_" + year
+      // const slotDate = date.toISOString().split('T')[0] // "YYYY-MM-DD"
 
       const {data} = await axios.post(backendUrl + '/api/user/book-appointment',{docId,slotDate,slotTime}, {headers:{token}})
       if (data.success) {
