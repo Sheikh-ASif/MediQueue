@@ -1,13 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext';
 import { assets } from '../assets/assets';
 import RelatedDocters from '../components/RelatedDocters';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Appointment = () => {
   const { docId } = useParams();
-  const { doctors, currencySymbol } = useContext(AppContext);
+  const { doctors, currencySymbol, backendUrl, token, getDoctorsData } = useContext(AppContext);
   const daysOfWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  const navigate = useNavigate()
 
   const [docInfo, setDocInfo] = useState(null);
   const [docSlots, setDocSlots] = useState([]);
@@ -54,6 +58,46 @@ const Appointment = () => {
     }
   }
 
+
+
+  const bookAppointment = async () => {
+    if (!token) {
+      toast.warn('Login to book Appointment')
+      return navigate('/login')
+    }
+
+    try {
+      
+      const date = docSlots[slotIndex][0].datetime
+
+      let day = date.getDate()
+      let month = date.getMonth() +  1
+      let year = date.getFullYear()
+
+      // const slotDate = day + "_" + month + "_" + year
+      const slotDate = date.toISOString().split('T')[0] // "YYYY-MM-DD"
+
+      const {data} = await axios.post(backendUrl + '/api/user/book-appointment',{docId,slotDate,slotTime}, {headers:{token}})
+      if (data.success) {
+        toast.success(data.message)
+        getDoctorsData()
+        navigate('/my-appointments')
+      } else {
+        toast.error(data.message)
+      }
+
+      // console.log(slotDate)
+
+    } catch (error) {
+      console.log(error)
+      toast.error(error.message)
+    }
+
+  }
+
+  
+
+
   useEffect(() => { fetchDocInfo(); }, [doctors, docId]);
   useEffect(() => { if (docInfo) getAvailableSlots(); }, [docInfo]);
 
@@ -92,7 +136,7 @@ const Appointment = () => {
               key={index}
               onClick={() => setSlotIndex(index)}
               className={`min-w-[60px] px-4 py-2 flex flex-col items-center rounded-full border
-                transition ${slotIndex === index ? 'border-blue-600 bg-blue-50 text-blue-700 font-semibold' : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-100'}`}
+                transition ${slotIndex === index ? 'border-blue-600 bg-blue-50 text-blue-700 font-semibold' : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-100 cursor-pointer'}`}
               aria-pressed={slotIndex === index}
             >
               <span className="text-xs">{daySlots[0] && daysOfWeek[daySlots[0].datetime.getDay()]}</span>
@@ -102,14 +146,14 @@ const Appointment = () => {
         </div>
 
         {/* Times */}
-        <div className="flex gap-2 flex-wrap mt-6">
+        <div className="flex gap-2 flex-wrap mt-6 ">
           {docSlots.length > 0 && docSlots[slotIndex].map((slot, idx) => (
             <button
               key={idx}
               onClick={() => setSlotTime(slot.time)}
               disabled={!slot.available}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm border transition
-                ${slot.time === slotTime ? 'bg-blue-600 text-white shadow-md font-bold' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-100'}
+                ${slot.time === slotTime ? 'bg-blue-600 text-white shadow-md font-bold ' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer'}
                 ${!slot.available && 'opacity-60 cursor-not-allowed'}`}
               aria-pressed={slot.time === slotTime}
               aria-disabled={!slot.available}
@@ -125,14 +169,14 @@ const Appointment = () => {
 
         {/* Selection Summary */}
         {slotTime && (
-          <div className="mt-4 text-center text-blue-700">
+          <div className="mt-4 text-center text-blue-700 ">
             <span className="font-semibold">Selected Slot:</span> {docSlots[slotIndex][0] && `${daysOfWeek[docSlots[slotIndex][0].datetime.getDay()]}, ${docSlots[slotIndex][0].datetime.getDate()}`} at {slotTime}
           </div>
         )}
 
         {/* CTA */}
         <div className="mt-8">
-          <button className="w-full sm:w-auto px-10 py-3 bg-blue-600 text-white rounded-full font-medium shadow-md hover:bg-blue-700 transition" disabled={!slotTime}>
+          <button onClick={bookAppointment} className="w-full sm:w-auto px-10 py-3 bg-blue-600 text-white rounded-full font-medium shadow-md hover:bg-blue-700 transition cursor-pointer" disabled={!slotTime}>
             Book Appointment
           </button>
         </div>
