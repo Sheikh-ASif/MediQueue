@@ -11,7 +11,6 @@ const MyAppointments = () => {
   const [appointments, setAppointments] = useState([])
   const [myId, setMyId] = useState(null)
   const [waitingTime, setWaitingTime] = useState(null)
-  const [estimatedTurn, setEstimatedTurn] = useState(null)
 
   const months = ["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
@@ -33,23 +32,18 @@ const MyAppointments = () => {
         const decoded = JSON.parse(atob(token.split('.')[1]))
         setMyId(decoded.id)
 
-        // calculate waiting time & estimated turn
+        // calculate waiting time for the next upcoming appointment
         if (data.appointments.length > 0) {
-          const sorted = [...data.appointments].filter(ap => !ap.cancelled).sort((a, b) => {
+          const sorted = [...data.appointments].sort((a, b) => {
             const t1 = new Date(`${a.slotDate.replace(/_/g, "/")} ${a.slotTime}`)
             const t2 = new Date(`${b.slotDate.replace(/_/g, "/")} ${b.slotTime}`)
             return t1 - t2
           })
-          const myAppointmentIndex = sorted.findIndex(ap => ap.userId === decoded.id)
+          const myAppointmentIndex = sorted.findIndex(ap => ap.userId === decoded.id && !ap.cancelled)
           if (myAppointmentIndex !== -1) {
             const avgConsultationMinutes = 15
             const minutes = myAppointmentIndex * avgConsultationMinutes
             setWaitingTime(minutes)
-
-            const now = new Date()
-            const appointmentTime = new Date(`${sorted[myAppointmentIndex].slotDate.replace(/_/g, "/")} ${sorted[myAppointmentIndex].slotTime}`)
-            const eta = new Date(now.getTime() + minutes * 60000)
-            setEstimatedTurn(eta.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }))
           }
         }
       }
@@ -86,13 +80,11 @@ const MyAppointments = () => {
   }, [token])
 
   // Chart Data Builder
-  const chartData = appointments
-    .filter(ap => !ap.cancelled)
-    .map((apt, index) => ({
-      time: apt.slotTime,
-      patient: apt.userData?.name || "Patient " + (index + 1),
-      me: apt.userId === myId
-    }))
+  const chartData = appointments.map((apt, index) => ({
+    time: apt.slotTime,
+    patient: apt.userData?.name || "Patient " + (index + 1),
+    me: apt.userId === myId
+  }))
 
   return (
     <div className="px-6 md:px-12 lg:px-20 py-10">
@@ -106,11 +98,6 @@ const MyAppointments = () => {
           <p className="text-lg font-medium text-gray-700">
             ⏳ Estimated Waiting Time: <span className="text-blue-600">{waitingTime} minutes</span>
           </p>
-          {estimatedTurn && (
-            <p className="text-md text-gray-600">
-              🕒 Your turn is expected around <span className="font-semibold text-green-600">{estimatedTurn}</span>
-            </p>
-          )}
         </div>
       )}
 
@@ -184,8 +171,8 @@ const MyAppointments = () => {
               {/* Actions */}
               <div className="flex flex-col gap-3 justify-center sm:items-end">
                 {!item.cancelled && (
-                  <span className="px-4 py-2 rounded-full text-sm font-medium bg-green-100 text-green-700 border border-green-300">
-                    Pay Later
+                  <span className="px-4 py-2 rounded-full text-sm font-medium bg-yellow-100 text-yellow-700 border border-yellow-300">
+                    Outstanding
                   </span>
                 )}
                 {!item.cancelled && (
@@ -211,7 +198,6 @@ const MyAppointments = () => {
 }
 
 export default MyAppointments
-
 
 
 
