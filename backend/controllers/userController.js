@@ -8,7 +8,8 @@ import userModel from '../models/userModel.js';
 import appointmentModel from '../models/appointmentModel.js';
 import mongoose from 'mongoose';
 
-// ========================= REGISTER USER =========================
+
+//REGISTER USER
 const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -40,7 +41,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-// ========================= LOGIN USER =========================
+//LOGIN USER
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -64,7 +65,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-// ========================= GET PROFILE =========================
+//GET PROFILE
 const getProfile = async (req, res) => {
   try {
     const userId = req.userId;
@@ -76,7 +77,7 @@ const getProfile = async (req, res) => {
   }
 };
 
-// ========================= UPDATE PROFILE =========================
+//UPDATE PROFILE
 const updateProfile = async (req, res) => {
   try {
     const userId = req.userId;
@@ -107,7 +108,7 @@ const updateProfile = async (req, res) => {
   }
 };
 
-// ========================= BOOK APPOINTMENT =========================
+// BOOK APPOINTMENT 
 const bookAppointment = async (req, res) => {
   try {
     const { docId, slotDate, slotTime } = req.body;
@@ -162,7 +163,7 @@ const bookAppointment = async (req, res) => {
   }
 };
 
-// ========================= LIST USER APPOINTMENTS =========================
+//LIST USER APPOINTMENTS
 const listAppointment = async (req, res) => {
   try {
     const userId = req.userId;  // ✅ from authUser middleware
@@ -174,7 +175,7 @@ const listAppointment = async (req, res) => {
   }
 };
 
-// ========================= CANCEL APPOINTMENT =========================
+//CANCEL APPOINTMENT
 const cancelAppointment = async (req, res) => {
   try {
     const { appointmentId } = req.body;
@@ -210,6 +211,7 @@ const cancelAppointment = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
 
 export { registerUser, loginUser, getProfile, updateProfile, bookAppointment, listAppointment, cancelAppointment };
 
