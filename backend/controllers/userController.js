@@ -179,7 +179,7 @@ const listAppointment = async (req, res) => {
 const cancelAppointment = async (req, res) => {
   try {
     const { appointmentId } = req.body;
-    const userId = req.userId; // ✅ from auth middleware
+    const userId = req.userId; 
 
     const appointmentData = await appointmentModel.findById(appointmentId);
 

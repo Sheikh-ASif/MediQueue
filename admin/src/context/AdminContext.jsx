@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify'
-
 export const AdminContext = createContext();
 
 const AdminContextProvider = (props) => {
@@ -63,13 +62,32 @@ const AdminContextProvider = (props) => {
         }
     }
 
+    const cancelAppointment = async (appointmentId) => {
+
+        try {
+            
+            const {data} = await axios.post(backendUrl+'/api/admin/cancel-appointment', {appointmentId},{headers:{atoken}})
+
+            if (data.succes) {
+                toast.success(data.message)
+                getAllAppointments()
+            } else {
+                toast.error(data.message)
+            }
+
+        } catch (error) {
+            toast.error(error.message)
+        }
+
+    }
+
 
     const value = {
         atoken, setAtoken,
         backendUrl, doctors,
         getAllDoctors, changeAvailability,
         appointments, setAppointments,
-        getAllAppointments
+        getAllAppointments, cancelAppointment
     }
 
     return(

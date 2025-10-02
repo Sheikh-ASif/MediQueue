@@ -4,7 +4,7 @@ import { AppContext } from '../../context/AppContext'
 import { assets } from '../../assets/assets'
 
 const AllApointments = () => {
-  const { atoken, appointments, getAllAppointments } = useContext(AdminContext)
+  const { atoken, appointments, getAllAppointments, cancelAppointment } = useContext(AdminContext)
   const { calculateAge, slotDateFormat, currency } = useContext(AppContext)
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const AllApointments = () => {
                 </span>
               ) : (
                 <button title="Cancel appointment">
-                  <img
+                  <img onClick={()=>cancelAppointment(item._id)}
                     className="w-8 h-8 p-1 rounded hover:bg-red-100 transition"
                     src={assets.cancel_icon}
                     alt="Cancel"
