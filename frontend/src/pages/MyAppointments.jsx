@@ -172,13 +172,13 @@ const MyAppointments = () => {
               <div className="flex flex-col gap-3 justify-center sm:items-end">
                 {!item.cancelled && (
                   <span className="px-4 py-2 rounded-full text-sm font-medium bg-yellow-100 text-yellow-700 border border-yellow-300">
-                    Outstanding
+                    Pay Later
                   </span>
                 )}
                 {!item.cancelled && (
                   <button
                     onClick={() => cancelAppointment(item._id)}
-                    className="text-sm px-6 py-2 rounded-lg border border-red-400 text-red-500 hover:bg-red-500 hover:text-white transition"
+                    className=" cursor-pointer text-sm px-6 py-2 rounded-lg border border-red-400 text-red-500 hover:bg-red-500 hover:text-white transition"
                   >
                     Cancel Appointment
                   </button>
