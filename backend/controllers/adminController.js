@@ -142,31 +142,84 @@ const appointmentCancel = async (req, res) => {
   }
 };
 
-//api to get the dashboard data for admin pannel 
-
-const adminDashboard = async (req,res) => {
-
+// API to get dashboard data for admin panel
+const adminDashboard = async (req, res) => {
     try {
-        
-        const doctors = await doctorModel.find({})
-        const users = await userModel.find({})
-        const appointments = await appointmentModel.find({})
+        const doctors = await doctorModel.find({});
+        const users = await userModel.find({});
+        const appointments = await appointmentModel.find({});
+
+        // Count by speciality -- EXCLUDE cancelled
+        const specialityCount = {};
+        for (const appt of appointments) {
+            if (appt.cancelled) continue;
+            if (!appt.docId) continue;
+            const doctor = doctors.find(doc => doc._id.toString() === appt.docId.toString());
+            if (doctor) {
+                specialityCount[doctor.speciality] = (specialityCount[doctor.speciality] || 0) + 1;
+            }
+        }
+
+        // Latest appointments with doc info (EXCLUDE cancelled)
+        const latestAppointments = appointments
+            .filter(appt => !appt.cancelled)
+            .reverse()
+            .slice(0, 5)
+            .map(item => {
+                const docData = doctors.find(doc => doc._id.toString() === item.docId.toString());
+                return { ...item._doc, docData };
+            });
 
         const dashData = {
             doctors: doctors.length,
-            appointments: appointments.length,
+            appointments: appointments.filter(a => !a.cancelled).length,
             patients: users.length,
-            latestAppointments: appointments.reverse().slice(0,5)
-        }
+            latestAppointments,
+            specialityCount
+        };
 
-        res.json({success:true,dashData})
-
+        res.json({ success: true, dashData });
     } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: error.message });
+        console.log(error);
+        res.json({ success: false, message: error.message });
     }
-
 }
+
+// //api to get the dashboard data for admin pannel 
+
+// const adminDashboard = async (req,res) => {
+
+//     try {
+        
+//         const doctors = await doctorModel.find({})
+//         const users = await userModel.find({})
+//         const appointments = await appointmentModel.find({})
+
+//          // Count appointments by speciality
+//         const specialityCount = {}
+//         for (const appt of appointments) {
+//             const doctor = doctors.find(doc => doc._id.toString() === appt.docId.toString())
+//             if (doctor) {
+//                 specialityCount[doctor.speciality] = (specialityCount[doctor.speciality] || 0) + 1
+//             }
+//         }
+
+//         const dashData = {
+//             doctors: doctors.length,
+//             appointments: appointments.length,
+//             patients: users.length,
+//             latestAppointments: appointments.reverse().slice(0,5),
+//             specialityCount
+//         }
+
+//         res.json({success:true,dashData})
+
+//     } catch (error) {
+//     console.log(error);
+//     res.json({ success: false, message: error.message });
+//     }
+
+// }
 
 
 
