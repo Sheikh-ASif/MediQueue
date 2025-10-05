@@ -95,10 +95,11 @@ const Docters = () => {
               />
               <div className="p-4 space-y-2">
                 {/* Availability */}
-                <div className="flex items-center gap-2 text-xs font-medium text-green-600">
-                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                  <span>Available</span>
-                </div>
+                <div className={`inline-flex items-center gap-2 text-xs font-medium ${item.available ? ' text-green-600' : 'text-red-500'} bg-green-100 px-3 py-1 rounded-full`}>
+                <span className={`w-2 h-2 ${item.available ? 'bg-green-500' :  'bg-gray-500'}  rounded-full`}></span>
+                {item.available ? 'Available' : 'Not Available'}
+              </div>
+
                 {/* Name */}
                 <p className="text-gray-900 text-lg font-semibold">
                   {item.name}

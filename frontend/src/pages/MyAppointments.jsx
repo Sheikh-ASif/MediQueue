@@ -170,12 +170,12 @@ const MyAppointments = () => {
 
               {/* Actions */}
               <div className="flex flex-col gap-3 justify-center sm:items-end">
-                {!item.cancelled && (
+                {!item.cancelled && !item.isCompleted && (
                   <span className="px-4 py-2 rounded-full text-sm font-medium bg-yellow-100 text-yellow-700 border border-yellow-300">
                     Pay Later
                   </span>
                 )}
-                {!item.cancelled && (
+                {!item.cancelled && !item.isCompleted && (
                   <button
                     onClick={() => cancelAppointment(item._id)}
                     className=" cursor-pointer text-sm px-6 py-2 rounded-lg border border-red-400 text-red-500 hover:bg-red-500 hover:text-white transition"
@@ -183,11 +183,12 @@ const MyAppointments = () => {
                     Cancel Appointment
                   </button>
                 )}
-                {item.cancelled && (
+                {item.cancelled && !item.isCompleted && (
                   <button className="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 text-sm">
-                    Not an Active Appointment
+                    Cancelled
                   </button>
                 )}
+                {item.isCompleted && <button className='sm:min-w-48 py-2 border border-green-500 rounded text-green-500'>Completed</button>}
               </div>
             </div>
           ))}

@@ -1,14 +1,6 @@
-
 import React, { useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import {
-  Home,
-  User,
-  Calendar,
-  Stethoscope,
-  Bell,
-  Search,
-} from "lucide-react";
+import { Home, User, Calendar, Stethoscope, Bell, Search } from "lucide-react";
 import { assets } from "../assets/assets";
 
 // Example doctors data (you can replace this with your backend data later)
