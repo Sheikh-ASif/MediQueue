@@ -6,19 +6,17 @@ import { AppContext } from "../context/AppContext";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const {token, setToken, userData} = useContext(AppContext)
+  const { token, setToken, userData } = useContext(AppContext);
 
   const [showMenu, setShowMenu] = useState(false);
 
   const logout = () => {
-    setToken(false)
-    localStorage.removeItem('token')
-  }
-  
+    setToken(false);
+    localStorage.removeItem("token");
+  };
 
   return (
     <div className="flex items-center justify-between text-sm py-4 px-6 mb-5 border-b bg-white shadow-sm sticky top-0 z-30">
-      
       <img
         onClick={() => navigate("/")}
         className="w-40 cursor-pointer hover:opacity-90 transition"
@@ -26,7 +24,6 @@ const Navbar = () => {
         alt="MediQueue Logo"
       />
 
-     
       <ul className="hidden md:flex items-center gap-6 font-medium text-gray-700">
         {[
           { name: "HOME", path: "/" },
@@ -39,9 +36,7 @@ const Navbar = () => {
             to={link.path}
             className={({ isActive }) =>
               `relative py-1 px-2 transition duration-300 ${
-                isActive
-                  ? "text-blue-600 font-semibold"
-                  : "hover:text-blue-500"
+                isActive ? "text-blue-600 font-semibold" : "hover:text-blue-500"
               }`
             }
           >
@@ -57,12 +52,9 @@ const Navbar = () => {
         ))}
       </ul>
 
-    
       <div className="flex items-center gap-4 relative">
-        {token && userData
-         ? (
+        {token && userData ? (
           <div className="relative">
-           
             <div className="flex items-center gap-2 cursor-pointer group">
               <img
                 className="w-9 h-9 rounded-full border-2 border-gray-200 shadow-sm"
@@ -75,7 +67,6 @@ const Navbar = () => {
                 alt="dropdown"
               />
 
-              
               <div className="absolute right-0 top-12 w-56 bg-white rounded-xl shadow-lg border border-gray-200 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 origin-top-right">
                 <div className="flex flex-col gap-2 py-3 px-4 text-gray-600 text-sm font-medium">
                   <p
@@ -109,7 +100,6 @@ const Navbar = () => {
           </button>
         )}
 
-    
         <img
           onClick={() => setShowMenu(true)}
           className="w-6 md:hidden cursor-pointer"
@@ -170,4 +160,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
