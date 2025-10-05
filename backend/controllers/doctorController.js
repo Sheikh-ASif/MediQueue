@@ -189,10 +189,11 @@ const doctorProfile = async (req,res) => {
 
 //Api to update the Doctor Profile Data from the doctor pannel
 
-const updateDoctorProfile = async (res,req) => {
+const updateDoctorProfile = async (req, res) => {
     try {
         
-        const { docId, fees, address, available } = req.body
+        const docId = req.docId;
+        const { fees, address, available } = req.body
 
         await doctorModel.findByIdAndUpdate(docId, {fees, address, available})
 
