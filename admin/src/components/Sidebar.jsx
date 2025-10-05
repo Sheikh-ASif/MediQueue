@@ -28,7 +28,7 @@ const Sidebar = () => {
               src={assets.home_icon}
               alt="Dashboard"
             />
-            <p className="text-sm">Dashboard</p>
+            <p className="hidden md:block text-sm">Dashboard</p>
           </NavLink>
 
           
@@ -47,7 +47,7 @@ const Sidebar = () => {
               src={assets.appointment_icon}
               alt="Appointments"
             />
-            <p className="text-sm">Appointments</p>
+            <p className="hidden md:block text-sm">Appointments</p>
           </NavLink>
 
          
@@ -66,7 +66,7 @@ const Sidebar = () => {
               src={assets.add_icon}
               alt="Add Doctor"
             />
-            <p className="text-sm">Add Doctor</p>
+            <p className="hidden md:block text-sm">Add Doctor</p>
           </NavLink>
 
          
@@ -85,7 +85,7 @@ const Sidebar = () => {
               src={assets.people_icon}
               alt="Doctors List"
             />
-            <p className="text-sm">Doctors List</p>
+            <p className="hidden md:block text-sm">Doctors List</p>
           </NavLink>
         </ul>
       }
@@ -108,7 +108,7 @@ const Sidebar = () => {
               src={assets.home_icon}
               alt="Dashboard"
             />
-            <p className="text-sm">Dashboard</p>
+            <p className="hidden md:block text-sm">Dashboard</p>
           </NavLink>
 
           
@@ -127,7 +127,7 @@ const Sidebar = () => {
               src={assets.appointment_icon}
               alt="Appointments"
             />
-            <p className="text-sm">Appointments</p>
+            <p className="hidden md:block text-sm">Appointments</p>
           </NavLink>
          
           <NavLink
@@ -145,7 +145,7 @@ const Sidebar = () => {
               src={assets.people_icon}
               alt="Doctors List"
             />
-            <p className="text-sm">Profile</p>
+            <p className="hidden md:block text-sm">Profile</p>
           </NavLink>
         </ul>
       }
