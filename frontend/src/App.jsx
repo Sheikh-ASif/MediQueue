@@ -12,8 +12,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import DashboardLayout from "./components/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute"; // <-- import your ProtectedRoute component
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
@@ -32,7 +32,13 @@ const App = () => {
         <Route path="/appointment/:docId" element={<Appointment />} />
 
         {/* Protected Dashboard Routes, wrapped in ProtectedRoute */}
-        <Route element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
+        <Route
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/my-appointments" element={<MyAppointments />} />
         </Route>
@@ -44,11 +50,6 @@ const App = () => {
 };
 
 export default App;
-
-
-
-
-
 
 // import React from "react";
 // import { Route, Routes } from "react-router-dom";
