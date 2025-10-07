@@ -1,26 +1,25 @@
-import React, { useContext } from 'react'
-import { assets } from '../assets/assets'
-import { AdminContext } from '../context/AdminContext'
-import { useNavigate } from 'react-router-dom'
-import { DoctorContext } from '../context/DoctorContext'
+import React, { useContext } from "react";
+import { assets } from "../assets/assets";
+import { AdminContext } from "../context/AdminContext";
+import { useNavigate } from "react-router-dom";
+import { DoctorContext } from "../context/DoctorContext";
 
 const Navbar = () => {
-  const { atoken, setAtoken } = useContext(AdminContext)
-  const { dtoken, setDtoken } = useContext(DoctorContext)
+  const { atoken, setAtoken } = useContext(AdminContext);
+  const { dtoken, setDtoken } = useContext(DoctorContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const logout = () => {
-    navigate('/')
-    atoken && setAtoken('')
-    atoken && localStorage.removeItem('atoken')
-    dtoken && setDtoken('')
-    dtoken && localStorage.removeItem('dtoken')
-  }
+    navigate("/");
+    atoken && setAtoken("");
+    atoken && localStorage.removeItem("atoken");
+    dtoken && setDtoken("");
+    dtoken && localStorage.removeItem("dtoken");
+  };
 
   return (
     <div className="flex justify-between items-center px-6 sm:px-12 py-4 border-b bg-white shadow-sm">
-    
       <div className="flex items-center gap-3 text-xs sm:text-sm">
         <img
           className="w-32 sm:w-40 cursor-pointer hover:scale-105 transition-transform duration-300"
@@ -28,7 +27,7 @@ const Navbar = () => {
           alt="Admin Logo"
         />
         <p className="border px-3 py-1 rounded-full border-gray-400 text-gray-700 font-medium shadow-sm cursor-pointer hover:bg-gray-100 transition-colors duration-300">
-          {atoken ? 'Admin' : 'Doctor'}
+          {atoken ? "Admin" : "Doctor"}
         </p>
       </div>
 
@@ -39,7 +38,7 @@ const Navbar = () => {
         Logout
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
