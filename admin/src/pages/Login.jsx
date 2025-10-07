@@ -2,61 +2,63 @@ import React, { useContext } from "react";
 import { assets } from "../assets/assets";
 import { useState } from "react";
 import { AdminContext } from "../context/AdminContext";
-import axios from 'axios'
+import axios from "axios";
 import { toast } from "react-toastify";
 import { DoctorContext } from "../context/DoctorContext";
 
 const Login = () => {
   const [state, setState] = useState("Admin");
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const {setAtoken,backendUrl} = useContext(AdminContext)
-  const {setDtoken} = useContext(DoctorContext)
+  const { setAtoken, backendUrl } = useContext(AdminContext);
+  const { setDtoken } = useContext(DoctorContext);
 
-  const onSubmitHandler = async(event) => {
-    event.preventDefault()
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
 
-    try{
-      if(state === "Admin"){
-          const {data} = await axios.post(backendUrl + '/api/admin/login', {email, password})
-          if(data.success){
-            localStorage.setItem('atoken', data.token)
-            setAtoken(data.token);
-          } else {
-            toast.error(data.message)
-          }
-
-      } else{
-        
-        const {data} = await axios.post(backendUrl + '/api/doctor/login', {email, password})
-        if(data.success){
-            localStorage.setItem('dtoken', data.token)
-            setDtoken(data.token);
-            console.log(data.token)
-          } else {
-            toast.error(data.message)
-          }
-
+    try {
+      if (state === "Admin") {
+        const { data } = await axios.post(backendUrl + "/api/admin/login", {
+          email,
+          password,
+        });
+        if (data.success) {
+          localStorage.setItem("atoken", data.token);
+          setAtoken(data.token);
+        } else {
+          toast.error(data.message);
+        }
+      } else {
+        const { data } = await axios.post(backendUrl + "/api/doctor/login", {
+          email,
+          password,
+        });
+        if (data.success) {
+          localStorage.setItem("dtoken", data.token);
+          setDtoken(data.token);
+          console.log(data.token);
+        } else {
+          toast.error(data.message);
+        }
       }
-    } catch(error){
-    
-
-    }
-
-  }
-
-
+    } catch (error) {}
+  };
 
   return (
-    <form onSubmit={onSubmitHandler} className="min-h-[80vh] flex items-center ">
+    <form
+      onSubmit={onSubmitHandler}
+      className="min-h-[80vh] flex items-center "
+    >
       <div className="flex flex-col gap-3 m-auto p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-[#5E5E5E] text-sm shadow-lg">
         <p className="text-2xl font-semibold m-auto">
           <span className="text-primary"> {state} </span> Login{" "}
         </p>
         <div className="w-full">
           <p>Email</p>
-          <input onChange={(e)=>setEmail(e.target.value)} value={email}
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
             className="border border-[#DADADA] rounded w-full p-2 mt-1"
             type="email"
             required
@@ -64,7 +66,9 @@ const Login = () => {
         </div>
         <div>
           <p>Password</p>
-          <input onChange={(e)=>setPassword(e.target.value)} value={password}
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
             className="border border-[#DADADA] rounded w-full p-2 mt-1"
             type="password"
             required
