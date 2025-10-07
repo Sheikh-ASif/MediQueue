@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AdminContext } from '../../context/AdminContext'
-import { assets } from '../../assets/assets'
-import { AppContext } from '../../context/AppContext'
+import React, { useContext, useEffect, useState } from "react";
+import { AdminContext } from "../../context/AdminContext";
+import { assets } from "../../assets/assets";
+import { AppContext } from "../../context/AppContext";
 
 import {
   LineChart,
@@ -15,59 +15,73 @@ import {
   Pie,
   Cell,
   ResponsiveContainer,
-} from 'recharts'
+} from "recharts";
 
-const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#8dd1e1', '#a4de6c']
+const COLORS = [
+  "#8884d8",
+  "#82ca9d",
+  "#ffc658",
+  "#ff8042",
+  "#8dd1e1",
+  "#a4de6c",
+];
 
 const Dashboard = () => {
-  const { atoken, getDashData, cancelAppointment, dashData } = useContext(AdminContext)
-  const { slotDateFormat } = useContext(AppContext)
+  const { atoken, getDashData, cancelAppointment, dashData } =
+    useContext(AdminContext);
+  const { slotDateFormat } = useContext(AppContext);
 
-  const [liveAppointmentsData, setLiveAppointmentsData] = useState([])
-  const [specialtyData, setSpecialtyData] = useState([])
+  const [liveAppointmentsData, setLiveAppointmentsData] = useState([]);
+  const [specialtyData, setSpecialtyData] = useState([]);
 
   useEffect(() => {
     if (atoken) {
-      getDashData()
+      getDashData();
     }
-  }, [atoken])
+  }, [atoken]);
 
   useEffect(() => {
     if (dashData) {
       let liveData = dashData.latestAppointments.map((item, index) => {
-        const slotDateObj = new Date(item.slotDate)
-        let label
+        const slotDateObj = new Date(item.slotDate);
+        let label;
         if (!item.slotDate) {
-          label = ''
+          label = "";
         } else if (!isNaN(slotDateObj.getTime())) {
-          label = slotDateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          label = slotDateObj.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
         } else {
-          label = item.slotDate // fallback to raw string
+          label = item.slotDate; // fallback to raw string
         }
         return {
           time: label,
           count: index + 1,
-        }
-      })
-      setLiveAppointmentsData(liveData)
+        };
+      });
+      setLiveAppointmentsData(liveData);
 
       if (dashData.specialtyCount) {
-        let specialtyArr = []
+        let specialtyArr = [];
         for (const [key, value] of Object.entries(dashData.specialtyCount)) {
-          specialtyArr.push({ name: key, value: value })
+          specialtyArr.push({ name: key, value: value });
         }
-        setSpecialtyData(specialtyArr)
+        setSpecialtyData(specialtyArr);
       } else {
-        const specMap = {}
-        dashData.latestAppointments.forEach(item => {
-          const spec = item.docData.speciality || 'Unknown'
-          specMap[spec] = (specMap[spec] || 0) + 1
-        })
-        const specialtyArr = Object.entries(specMap).map(([name, value]) => ({ name, value }))
-        setSpecialtyData(specialtyArr)
+        const specMap = {};
+        dashData.latestAppointments.forEach((item) => {
+          const spec = item.docData.speciality || "Unknown";
+          specMap[spec] = (specMap[spec] || 0) + 1;
+        });
+        const specialtyArr = Object.entries(specMap).map(([name, value]) => ({
+          name,
+          value,
+        }));
+        setSpecialtyData(specialtyArr);
       }
     }
-  }, [dashData])
+  }, [dashData]);
 
   return (
     dashData && (
@@ -79,23 +93,41 @@ const Dashboard = () => {
         {/* Summary Cards */}
         <div className="flex flex-wrap gap-8 justify-between mb-12">
           <div className="flex-1 min-w-[240px] mr-4 flex items-center gap-4 bg-white p-6 rounded-xl border border-gray-200 shadow-xl hover:shadow-2xl transition-all cursor-pointer">
-            <img className="w-16 drop-shadow-lg" src={assets.doctor_icon} alt="Doctors" />
+            <img
+              className="w-16 drop-shadow-lg"
+              src={assets.doctor_icon}
+              alt="Doctors"
+            />
             <div>
-              <p className="text-3xl font-bold text-indigo-700">{dashData.doctors}</p>
+              <p className="text-3xl font-bold text-indigo-700">
+                {dashData.doctors}
+              </p>
               <p className="text-gray-500 font-medium">Doctors</p>
             </div>
           </div>
           <div className="flex-1 min-w-[240px] mr-4 flex items-center gap-4 bg-white p-6 rounded-xl border border-gray-200 shadow-xl hover:shadow-2xl transition-all cursor-pointer">
-            <img className="w-16 drop-shadow-lg" src={assets.appointments_icon} alt="Appointments" />
+            <img
+              className="w-16 drop-shadow-lg"
+              src={assets.appointments_icon}
+              alt="Appointments"
+            />
             <div>
-              <p className="text-3xl font-bold text-indigo-700">{dashData.appointments}</p>
+              <p className="text-3xl font-bold text-indigo-700">
+                {dashData.appointments}
+              </p>
               <p className="text-gray-500 font-medium">Appointments</p>
             </div>
           </div>
           <div className="flex-1 min-w-[240px] flex items-center gap-4 bg-white p-6 rounded-xl border border-gray-200 shadow-xl hover:shadow-2xl transition-all cursor-pointer">
-            <img className="w-16 drop-shadow-lg" src={assets.patients_icon} alt="Patients" />
+            <img
+              className="w-16 drop-shadow-lg"
+              src={assets.patients_icon}
+              alt="Patients"
+            />
             <div>
-              <p className="text-3xl font-bold text-indigo-700">{dashData.patients}</p>
+              <p className="text-3xl font-bold text-indigo-700">
+                {dashData.patients}
+              </p>
               <p className="text-gray-500 font-medium">Patients</p>
             </div>
           </div>
@@ -103,26 +135,44 @@ const Dashboard = () => {
 
         {/* Graph Section */}
         <div className="bg-white rounded-2xl border border-indigo-100 shadow-xl mb-12 py-8 px-6">
-          <h2 className="text-2xl font-bold text-indigo-800 text-center mb-8">Graph Section</h2>
+          <h2 className="text-2xl font-bold text-indigo-800 text-center mb-8">
+            Graph Section
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="p-2">
-              <h3 className="text-lg font-semibold text-indigo-700 mb-4 text-center">Live Appointments Trend</h3>
+              <h3 className="text-lg font-semibold text-indigo-700 mb-4 text-center">
+                Live Appointments Trend
+              </h3>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart
                   data={liveAppointmentsData}
                   margin={{ top: 5, right: 20, left: 0, bottom: 20 }}
                 >
                   <CartesianGrid stroke="#ececec" />
-                  <XAxis dataKey="time" tick={{ fill: "#6366f1", fontWeight: 600 }} />
-                  <YAxis allowDecimals={false} tick={{ fill: "#6366f1", fontWeight: 600 }} />
+                  <XAxis
+                    dataKey="time"
+                    tick={{ fill: "#6366f1", fontWeight: 600 }}
+                  />
+                  <YAxis
+                    allowDecimals={false}
+                    tick={{ fill: "#6366f1", fontWeight: 600 }}
+                  />
                   <Tooltip />
                   <Legend />
-                  <Line type="monotone" dataKey="count" stroke="#6366f1" strokeWidth={3} activeDot={{ r: 9 }} />
+                  <Line
+                    type="monotone"
+                    dataKey="count"
+                    stroke="#6366f1"
+                    strokeWidth={3}
+                    activeDot={{ r: 9 }}
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </div>
             <div className="p-2">
-              <h3 className="text-lg font-semibold text-indigo-700 mb-4 text-center">Appointments by Specialty</h3>
+              <h3 className="text-lg font-semibold text-indigo-700 mb-4 text-center">
+                Appointments by Specialty
+              </h3>
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
@@ -133,10 +183,15 @@ const Dashboard = () => {
                     cy="50%"
                     outerRadius={110}
                     fill="#82ca9d"
-                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }) =>
+                      `${name}: ${(percent * 100).toFixed(0)}%`
+                    }
                   >
                     {specialtyData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
                     ))}
                   </Pie>
                   <Tooltip formatter={(value) => [value, "Appointments"]} />
@@ -151,7 +206,9 @@ const Dashboard = () => {
         <div className="bg-white mt-6 rounded-2xl border border-gray-200 shadow-xl hover:shadow-2xl">
           <div className="flex items-center gap-3 px-8 py-6 border-b border-gray-200">
             <img src={assets.list_icon} alt="List Icon" className="w-8" />
-            <p className="font-bold text-indigo-800 text-lg">Latest Appointments</p>
+            <p className="font-bold text-indigo-800 text-lg">
+              Latest Appointments
+            </p>
           </div>
           <div>
             {dashData.latestAppointments.map((item, index) => (
@@ -159,38 +216,48 @@ const Dashboard = () => {
                 key={index}
                 className="flex items-center px-8 py-4 gap-6 hover:bg-indigo-50 cursor-default border-b border-gray-100 text-base"
               >
-                <img className="rounded-full w-14 h-14 object-cover border-4 border-indigo-100" src={item.docData.image} alt={item.docData.name} />
+                <img
+                  className="rounded-full w-14 h-14 object-cover border-4 border-indigo-100"
+                  src={item.docData.image}
+                  alt={item.docData.name}
+                />
                 <div className="flex-1 text-base">
-                  <p className="text-gray-800 font-semibold">{item.docData.name}</p>
-                  <p className="text-gray-600">{slotDateFormat(item.slotDate)}</p>
+                  <p className="text-gray-800 font-semibold">
+                    {item.docData.name}
+                  </p>
+                  <p className="text-gray-600">
+                    {slotDateFormat(item.slotDate)}
+                  </p>
                 </div>
                 {item.cancelled ? (
-                               <span className="text-red-500 rounded px-2 py-1 bg-red-50 font-medium text-xs border border-red-200">
-                                 Cancelled
-                               </span>
-                             ) : item.isCompleted 
-                             ? <p className='text-green-500 text-xs font-medium'> Completed</p> : (
-                               <button title="Cancel appointment">
-                                 <img onClick={()=>cancelAppointment(item._id)}
-                                   className="w-8 h-8 p-1 rounded hover:bg-red-100 transition"
-                                   src={assets.cancel_icon}
-                                   alt="Cancel"
-                                 />
-                               </button>
-                             )}
+                  <span className="text-red-500 rounded px-2 py-1 bg-red-50 font-medium text-xs border border-red-200">
+                    Cancelled
+                  </span>
+                ) : item.isCompleted ? (
+                  <p className="text-green-500 text-xs font-medium">
+                    {" "}
+                    Completed
+                  </p>
+                ) : (
+                  <button title="Cancel appointment">
+                    <img
+                      onClick={() => cancelAppointment(item._id)}
+                      className="w-8 h-8 p-1 rounded hover:bg-red-100 transition"
+                      src={assets.cancel_icon}
+                      alt="Cancel"
+                    />
+                  </button>
+                )}
               </div>
             ))}
           </div>
         </div>
       </div>
     )
-  )
-}
+  );
+};
 
-export default Dashboard
-
-
-
+export default Dashboard;
 
 // import React, { useContext, useEffect, useState } from 'react'
 // import { AdminContext } from '../../context/AdminContext'
@@ -381,9 +448,6 @@ export default Dashboard
 
 // export default Dashboard
 
-
-
-
 // import React from 'react'
 // import { useContext } from 'react'
 // import { AdminContext } from '../../context/AdminContext'
@@ -394,11 +458,11 @@ export default Dashboard
 // const Dashboard = () => {
 
 //   const {atoken, getDashData, cancelAppointment, dashData } = useContext(AdminContext)
- 
+
 //   const {slotDateFormat} = useContext(AppContext)
 
 //   useEffect( () => {
-    
+
 //     if(atoken) {
 //       getDashData()
 //     }

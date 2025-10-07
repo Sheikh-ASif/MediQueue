@@ -36,7 +36,10 @@ const AddDoctor = () => {
       formData.append("about", about);
       formData.append("speciality", speciality);
       formData.append("degree", degree);
-      formData.append("address", JSON.stringify({ line1: address1, line2: address2 }));
+      formData.append(
+        "address",
+        JSON.stringify({ line1: address1, line2: address2 })
+      );
 
       formData.forEach((value, key) => {
         console.log(`${key}: ${value}`);
@@ -70,10 +73,7 @@ const AddDoctor = () => {
 
   return (
     <div className="w-full h-full bg-gray-50 p-8">
-      <form
-        onSubmit={onSubmitHandler}
-        className="w-full max-w-4xl mx-auto"
-      >
+      <form onSubmit={onSubmitHandler} className="w-full max-w-4xl mx-auto">
         <p className="mt-2 mb-6 text-3xl font-bold text-gray-800">
           ➕ Add Doctor
         </p>
@@ -238,9 +238,6 @@ const AddDoctor = () => {
 };
 
 export default AddDoctor;
-
-
-
 
 // import React, { useContext, useState } from "react";
 // import { assets } from "../../assets/assets";
