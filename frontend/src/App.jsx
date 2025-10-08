@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 import Docters from "./pages/Docters";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -24,6 +25,8 @@ const App = () => {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+
         <Route path="/docters" element={<Docters />} />
         <Route path="/docters/:speciality" element={<Docters />} />
         <Route path="/login" element={<Login />} />
