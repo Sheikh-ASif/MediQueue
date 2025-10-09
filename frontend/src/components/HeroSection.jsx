@@ -2,31 +2,51 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
 
-// Section 2-3 Cards (Medical Features)
+// Professional gradient for all features
+const universalCardGradient =
+  "bg-gradient-to-tr from-[#7b49fa] via-[#43c3ea] to-[#35e8ca]";
+
+// Section 2-3 Cards (Medical Features) - Refined, single color for all
 const featureCards = [
   {
     icon: "🩺",
     title: "Verified Doctors",
-    desc: "Consult only with highly qualified, certified healthcare professionals.",
-    color: "bg-gradient-to-tr from-blue-500 to-purple-400",
+    desc: "Consult with certified and highly experienced medical professionals for reliable care.",
   },
   {
     icon: "📅",
     title: "Instant Appointments",
-    desc: "Book slots in seconds and manage your schedule digitally.",
-    color: "bg-gradient-to-tr from-green-400 to-blue-400",
+    desc: "Quickly book your appointments and manage your visits online without hassle.",
   },
   {
     icon: "💊",
     title: "E-Prescriptions",
-    desc: "Doctors send your prescription straight to your device and pharmacy.",
-    color: "bg-gradient-to-tr from-pink-400 to-yellow-300",
+    desc: "Receive digital prescriptions sent directly to your device and pharmacy.",
   },
   {
     icon: "📊",
     title: "Health Analytics",
-    desc: "Track your progress, health metrics, and wellness trends with ease.",
-    color: "bg-gradient-to-tr from-indigo-500 to-blue-300",
+    desc: "Track your health metrics, lab results, and progress using interactive charts.",
+  },
+  {
+    icon: "🔒",
+    title: "Secure & Private",
+    desc: "Your medical data is encrypted and strictly confidential for your privacy.",
+  },
+  {
+    icon: "📲",
+    title: "Mobile Access",
+    desc: "Easily access medical services and records on any device, anytime.",
+  },
+  {
+    icon: "🔔",
+    title: "Smart Reminders",
+    desc: "Automated reminders for appointments, medication, and follow-up visits.",
+  },
+  {
+    icon: "🚑",
+    title: "24/7 Emergency Support",
+    desc: "Connect instantly with emergency doctors and health resources, day or night.",
   },
 ];
 
@@ -88,25 +108,30 @@ const HeroSection = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="pt-0 mt-0">
       {/* Section 1: Hero */}
-      <section className="relative w-full bg-gradient-to-br from-[#8058e5] via-[#6e49ed] to-[#33cef3] min-h-[520px] flex flex-col md:flex-row items-center justify-between rounded-3xl shadow-2xl px-10 pt-16 pb-10 overflow-hidden mb-10">
+      <section className="relative w-full min-h-[630px] bg-gradient-to-br from-[#8058e5] via-[#6e49ed] to-[#33cef3] flex flex-col md:flex-row items-center justify-center rounded-none shadow-2xl px-0 pt-0 pb-0 overflow-hidden m-0">
         {/* Left: Text Content */}
-        <div className="w-full md:w-1/2 z-10">
-          <div className="mb-6 flex items-center">
-            <span className="px-5 py-2 rounded-full bg-white/20 text-white font-semibold text-base border border-white/15 shadow">
+        <div className="w-full md:w-[45%] flex flex-col justify-center items-end z-10 pr-4">
+          <div className="mb-5 flex items-center">
+            <span className="px-5 py-2 rounded-none bg-white/20 text-white font-semibold text-base border border-white/15 shadow">
               🏥 Seamless, Trusted, 24/7 Medical Care
             </span>
           </div>
-          <h1 className="text-white text-4xl md:text-5xl font-extrabold leading-tight mb-3">
+
+          <h1 className="text-white text-4xl md:text-5xl font-extrabold leading-tight mb-3 text-right max-w-lg">
             Your <span className="text-[#ffe373]">Health</span>,<br />
             <span className="text-[#2ad6f8]">Our Priority</span>
           </h1>
-          <p className="text-white/90 text-lg mb-8 max-w-xl">
-            Book appointments, consult specialists, manage records, and access
-            care in just a few clicks—anytime, anywhere.
+          <p className="text-white/90 text-lg mt-2 mb-4 max-w-lg leading-normal text-right">
+            <span className="text-[#2ad6f8]">Book appointments</span> <br />
+            <span className="text-[#2ad6f8]">Consult specialists,</span>
+            <br />
+            <span className="text-[#2ad6f8]">Manage records,</span>
+            <br />
           </p>
-          <div className="flex gap-4 mt-2">
+
+          <div className="flex gap-4 mt-2 justify-end">
             <button
               onClick={() => navigate("/login")}
               className="bg-gradient-to-r from-blue-500 via-blue-400 to-purple-500 text-white font-bold px-8 py-3 rounded-full shadow hover:from-purple-600 hover:to-blue-400 transition cursor-pointer"
@@ -117,10 +142,10 @@ const HeroSection = () => {
               Watch Demo
             </button>
           </div>
-          <div className="mt-7 text-white/80 text-sm">
-            <span className="inline-flex items-center gap-4">
+          <div className="mt-7 text-white/80 text-sm text-right">
+            <span className="inline-flex items-center gap-4 justify-end">
               <span className="flex gap-2 items-center">
-                <span className="bg-gradient-to-r from-purple-600 to-blue-500 px-2 py-1 rounded font-semibold">
+                <span className="bg-gradient-to-r from-purple-600 to-blue-500 px-2 py-1 rounded-none font-semibold">
                   🔒 Secure
                 </span>
                 <span>• 24/7 Emergency Care</span>
@@ -130,8 +155,8 @@ const HeroSection = () => {
             </span>
           </div>
         </div>
-        {/* Right: Medical Illustration (optional for SaaS look) */}
-        <div className="hidden md:flex w-1/2 items-center justify-end">
+        {/* Right: Medical Illustration */}
+        <div className="w-full md:w-[45%] flex items-center justify-start pl-4">
           <img
             src={assets.header_img}
             alt="Medical Illustration"
@@ -143,23 +168,40 @@ const HeroSection = () => {
       </section>
 
       {/* Section 2-3: Feature Cards */}
-      <section className="w-full flex flex-wrap items-center justify-center gap-8 py-10 bg-gradient-to-r from-[rgba(110,73,237,0.07)] to-[rgba(51,206,243,0.08)] rounded-3xl shadow-inner mb-12">
-        {featureCards.map((card) => (
-          <div
-            key={card.title}
-            className={`flex flex-col items-center text-center w-60 p-8 rounded-2xl ${card.color} text-white shadow-xl`}
-          >
-            <span className="text-4xl mb-2">{card.icon}</span>
-            <span className="text-xl font-extrabold mb-1">{card.title}</span>
-            <span className="text-base opacity-90">{card.desc}</span>
-          </div>
-        ))}
+      <section className="w-full min-h-[520px] flex flex-col py-16 bg-gradient-to-r from-[rgba(110,73,237,0.07)] to-[rgba(51,206,243,0.08)] shadow-inner m-0">
+        {/* Section Heading */}
+        <div className="text-center mb-12">
+          <span className="inline-block px-5 py-2 mb-4 bg-purple-100 text-purple-600 font-semibold text-base rounded-full">
+            Why Choose Our Platform?
+          </span>
+          <h2 className="text-[2rem] md:text-3xl font-extrabold text-gray-900">
+            Smart Features for Modern Healthcare
+          </h2>
+          <p className="text-gray-600 mt-2 text-lg max-w-2xl mx-auto">
+            Designed to make your medical experience easy, secure, and connected
+            – for patients, doctors, and families.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div className="flex flex-wrap items-center justify-center gap-8">
+          {featureCards.map((card) => (
+            <div
+              key={card.title}
+              className={`feature-card-pro flex flex-col items-center text-center w-64 p-8 rounded-2xl ${universalCardGradient} text-white shadow-xl transition-all duration-300 ease-in-out cursor-pointer m-0`}
+            >
+              <span className="text-4xl mb-2">{card.icon}</span>
+              <span className="text-xl font-extrabold mb-1">{card.title}</span>
+              <span className="text-base opacity-90">{card.desc}</span>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Section 4: How It Works */}
-      <section className="bg-white py-12 rounded-3xl shadow-xl max-w-6xl mx-auto mb-12">
+      <section className="w-full min-h-[520px] bg-white py-12 rounded-none shadow-xl m-0 flex flex-col justify-center">
         <div className="text-center mb-8">
-          <span className="inline-block px-5 py-2 mb-4 bg-purple-100 text-purple-600 rounded-full font-semibold text-base">
+          <span className="inline-block px-5 py-2 mb-4 bg-purple-100 text-purple-600 rounded-2xl font-semibold text-base">
             How It Works
           </span>
           <h2 className="text-[2rem] md:text-3xl font-extrabold text-gray-900">
@@ -174,7 +216,7 @@ const HeroSection = () => {
           {steps.map((step) => (
             <div
               key={step.title}
-              className="flex flex-col items-center w-56 p-8 rounded-2xl bg-gradient-to-tr from-purple-50 to-blue-50 border shadow-md"
+              className="flex flex-col items-center w-56 p-8 rounded-none bg-gradient-to-tr from-purple-50 to-blue-50 border shadow-md m-0 hover:scale-105 hover:shadow-lg transition-all duration-300"
             >
               <span className="text-[#6e49ed] text-3xl mb-2 font-bold">
                 {step.icon}
@@ -191,9 +233,9 @@ const HeroSection = () => {
       </section>
 
       {/* Section 5: Testimonials */}
-      <section className="py-12 bg-gradient-to-br from-[#f0f3fa] via-[#e9e4fc] to-[#e4f7fd] rounded-3xl max-w-6xl mx-auto shadow-lg mb-12">
+      <section className="w-full min-h-[520px] py-12 bg-gradient-to-br from-[#f0f3fa] via-[#e9e4fc] to-[#e4f7fd] rounded-none shadow-lg m-0 flex flex-col justify-center">
         <div className="text-center mb-8">
-          <span className="inline-block px-5 py-2 mb-3 bg-purple-100 text-purple-500 rounded-full font-semibold text-base">
+          <span className="inline-block px-5 py-2 mb-3 bg-purple-100 text-purple-500 rounded-none font-semibold text-base">
             What Patients & Doctors Say
           </span>
           <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-1">
@@ -204,7 +246,7 @@ const HeroSection = () => {
           {testimonials.map((testi, idx) => (
             <div
               key={idx}
-              className="w-96 bg-white rounded-2xl shadow-md px-8 py-7 flex flex-col items-center border"
+              className="w-96 bg-white rounded-xl shadow-md px-8 py-7 flex flex-col items-center border m-0 hover:scale-105 hover:shadow-xl transition-all duration-300"
             >
               <span className="text-5xl mb-4">“</span>
               <p className="text-gray-700 italic mb-5">"{testi.quote}"</p>
@@ -225,7 +267,7 @@ const HeroSection = () => {
       </section>
 
       {/* Section 6: Trusted By */}
-      <section className="py-10 bg-gradient-to-r from-purple-100 via-blue-100 to-cyan-100 rounded-3xl shadow-inner max-w-4xl mx-auto mb-10">
+      <section className="w-full min-h-[520px] py-10 bg-gradient-to-r from-purple-100 via-blue-100 to-cyan-100 rounded-none shadow-inner m-0 flex flex-col justify-center">
         <div className="text-center mb-6">
           <h3 className="text-xl md:text-2xl font-extrabold text-gray-900">
             Trusted by Clinics and Institutions
@@ -241,11 +283,10 @@ const HeroSection = () => {
         </div>
       </section>
 
-      {/** Section 7 */}
-
-      <section className="w-full flex flex-col items-center justify-center bg-gradient-to-br from-[#8058e5] via-[#6e49ed] to-[#33cef3] rounded-3xl shadow-2xl px-6 pt-24 pb-20 mb-10">
+      {/* Call to Action */}
+      <section className="w-full min-h-[520px] flex flex-col items-center justify-center bg-gradient-to-br from-[#8058e5] via-[#6e49ed] to-[#33cef3] rounded-none shadow-2xl px-0 pt-0 pb-0 m-0">
         <div className="mb-6 flex items-center justify-center">
-          <span className="px-5 py-2 rounded-full bg-white/20 text-white font-semibold text-base border border-white/10 shadow">
+          <span className="px-5 py-2 rounded-none bg-white/20 text-white font-semibold text-base border border-white/10 shadow">
             🌟 Ready to Modernize Your Healthcare?
           </span>
         </div>
@@ -260,13 +301,13 @@ const HeroSection = () => {
           for fast, secure, and effective care.
         </p>
         <div className="flex flex-wrap justify-center gap-4 my-3">
-          <div className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 border border-white/10 text-white font-medium shadow">
+          <div className="flex items-center gap-2 px-6 py-3 rounded-none bg-white/10 border border-white/10 text-white font-medium shadow">
             <span>🛡️</span> Secure & Private
           </div>
-          <div className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 border border-white/10 text-white font-medium shadow">
+          <div className="flex items-center gap-2 px-6 py-3 rounded-none bg-white/10 border border-white/10 text-white font-medium shadow">
             <span>🤝</span> Easy to Use
           </div>
-          <div className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 border border-white/10 text-white font-medium shadow">
+          <div className="flex items-center gap-2 px-6 py-3 rounded-none bg-white/10 border border-white/10 text-white font-medium shadow">
             <span>🕑</span> 24/7 Support
           </div>
         </div>

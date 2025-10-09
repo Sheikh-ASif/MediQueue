@@ -1,10 +1,9 @@
-
 import React from "react";
 import { assets } from "../assets/assets";
 
 const Header = () => {
   return (
-    <div className="flex flex-col md:flex-row flex-wrap bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl shadow-lg px-6 md:px-10 lg:px-20 overflow-hidden">
+    <div className="relative w-full min-h-[630px] flex flex-col md:flex-row flex-wrap bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg px-6 md:px-10 lg:px-20 overflow-hidden">
       {/**-----------Left Side------- */}
       <div className="md:w-1/2 flex flex-col items-start justify-center gap-6 py-12 md:py-[8vw]">
         <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-snug">
@@ -46,11 +45,6 @@ const Header = () => {
 
 export default Header;
 
-
-
-
-
-
 // import React from "react";
 // import { assets } from "../assets/assets";
 
@@ -62,10 +56,10 @@ export default Header;
 //         Book Appointments<br />with Trusted Doctors
 //       </h1>
 //       <div className="flex items-center gap-5 bg-gradient-to-br from-[#eaf6ff] via-[#dbeafc] to-[#e4f0fb] rounded-2xl shadow-xl px-7 py-5 mb-3">
-//         <img 
-//           src={assets.group_profiles} 
-//           alt="group" 
-//           className="w-16 h-16 rounded-full shadow" 
+//         <img
+//           src={assets.group_profiles}
+//           alt="group"
+//           className="w-16 h-16 rounded-full shadow"
 //         />
 //         <span className="text-base md:text-lg text-[#1952c4] font-medium">
 //           Your health matters. Browse our trusted doctors and schedule appointments effortlessly.
@@ -91,8 +85,3 @@ export default Header;
 // );
 
 // export default Header;
-
-
-
-
-

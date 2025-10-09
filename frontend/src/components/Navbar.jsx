@@ -14,36 +14,39 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  // Links when logged in
+  // Authenticated links
   const authLinks = [
     { name: "HOME", path: "/" },
     { name: "ALL DOCTORS", path: "/docters" },
     { name: "ABOUT", path: "/about" },
     { name: "CONTACT", path: "/contact" },
   ];
-
-  // Links when NOT logged in
-  const guestLinks = [{ name: "HOME", path: "/" }];
+  // Guest links as requested
+  const guestLinks = [
+    { name: "HOME", path: "/" },
+    { name: "ABOUT", path: "/about" },
+    { name: "CONTACT US", path: "/contact" },
+  ];
 
   return (
-    <div className="flex items-center justify-between text-sm py-4 px-6 mb-5 border-b bg-white shadow-sm sticky top-0 z-30">
+    <div className="flex items-center justify-between px-4 py-2 border-b-0 bg-gradient-to-br from-[#8058e5] via-[#6e49ed] to-[#33cef3] text-white sticky top-0 z-30 m-0 mb-0 shadow-2xl text-xs">
       <img
         onClick={() => navigate("/")}
         className="w-40 cursor-pointer hover:opacity-90 transition"
         src={assets.logo}
         alt="MediQueue Logo"
       />
-
-      {/* Links for LOGGED IN */}
       {token ? (
-        <ul className="hidden md:flex items-center gap-6 font-medium text-gray-700">
+        <ul className="hidden md:flex items-center gap-6 font-medium">
           {authLinks.map((link) => (
             <NavLink
               key={link.name}
               to={link.path}
               className={({ isActive }) =>
                 `relative py-1 px-2 transition duration-300 ${
-                  isActive ? "text-blue-600 font-semibold" : "hover:text-blue-500"
+                  isActive
+                    ? "text-[#ffe373] font-semibold"
+                    : "hover:text-[#2ad6f8]"
                 }`
               }
             >
@@ -51,7 +54,7 @@ const Navbar = () => {
                 <>
                   <li>{link.name}</li>
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full"></span>
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ffe373] rounded-full"></span>
                   )}
                 </>
               )}
@@ -59,21 +62,25 @@ const Navbar = () => {
           ))}
         </ul>
       ) : (
-      // Links for LOGGED OUT (align Home + Create Account together)
-        <div className="hidden md:flex items-center gap-2 ml-auto font-medium text-gray-700">
-          <NavLink
-            to={guestLinks[0].path}
-            className={({ isActive }) =>
-              `relative py-1 px-4 transition duration-300 ${
-                isActive ? "text-blue-600 font-semibold" : "hover:text-blue-500"
-              }`
-            }
-          >
-            <li>{guestLinks[0].name}</li>
-          </NavLink>
+        <div className="hidden md:flex items-center gap-2 ml-auto font-medium">
+          {guestLinks.map((link) => (
+            <NavLink
+              key={link.name}
+              to={link.path}
+              className={({ isActive }) =>
+                `relative py-1 px-4 transition duration-300 ${
+                  isActive
+                    ? "text-[#ffe373] font-semibold"
+                    : "hover:text-[#2ad6f8]"
+                }`
+              }
+            >
+              <li>{link.name}</li>
+            </NavLink>
+          ))}
           <button
             onClick={() => navigate("/login")}
-            className="bg-blue-600 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-700 transition"
+            className="bg-[#2ad6f8] text-[#222] px-5 py-2 rounded-full font-medium hover:bg-[#ffe373] transition"
           >
             Create Account
           </button>
@@ -85,7 +92,7 @@ const Navbar = () => {
           <div className="relative">
             <div className="flex items-center gap-2 cursor-pointer group">
               <img
-                className="w-9 h-9 rounded-full border-2 border-gray-200 shadow-sm"
+                className="w-9 h-9 rounded-full border-2 border-white/20 shadow-sm"
                 src={userData.image}
                 alt="profile"
               />
@@ -119,7 +126,6 @@ const Navbar = () => {
             </div>
           </div>
         ) : null}
-
         <img
           onClick={() => setShowMenu(true)}
           className="w-6 md:hidden cursor-pointer"
@@ -130,11 +136,11 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-64 bg-gradient-to-br from-[#8058e5] via-[#6e49ed] to-[#33cef3] text-white shadow-lg z-50 transform transition-transform duration-300 ${
           showMenu ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between px-5 py-6 border-b">
+        <div className="flex items-center justify-between px-5 py-6 border-b border-white/20">
           <img className="w-32" src={assets.logo} alt="logo" />
           <img
             className="w-7 cursor-pointer"
@@ -143,14 +149,13 @@ const Navbar = () => {
             alt="close"
           />
         </div>
-
-        <ul className="flex flex-col items-start gap-4 mt-6 px-6 text-lg font-medium text-gray-700">
+        <ul className="flex flex-col items-start gap-4 mt-6 px-6 text-lg font-medium">
           {(token ? authLinks : guestLinks).map((link) => (
             <NavLink
               key={link.name}
               onClick={() => setShowMenu(false)}
               to={link.path}
-              className="hover:text-blue-600 transition"
+              className="hover:text-[#ffe373] transition"
             >
               {link.name}
             </NavLink>
@@ -161,7 +166,7 @@ const Navbar = () => {
                 setShowMenu(false);
                 navigate("/login");
               }}
-              className="bg-blue-600 text-white px-5 py-2 rounded-full font-medium mt-2 hover:bg-blue-700 transition w-full text-center"
+              className="bg-[#ffe373] text-[#222] px-5 py-2 rounded-full font-medium mt-2 hover:bg-[#2ad6f8] hover:text-white transition w-full text-center"
             >
               Create Account
             </button>
@@ -173,12 +178,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
-
-
-
 
 // import React, { useContext, useState } from "react";
 // import { assets } from "../assets/assets";
@@ -343,5 +342,3 @@ export default Navbar;
 // };
 
 // export default Navbar;
-
-

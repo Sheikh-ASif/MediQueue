@@ -10,17 +10,26 @@ const Footer = () => {
           <div className="flex items-center gap-2 mb-3">
             <img className="w-10 h-10" src={assets.logo} alt="MediQueue logo" />
             <div>
-              <span className="text-xl font-extrabold text-[#b196ff]">MediQueue</span>
-              <div className="text-xs text-[#bfc6ea] font-medium">Management System</div>
+              <span className="text-xl font-extrabold text-[#b196ff]">
+                MediQueue
+              </span>
+              <div className="text-xs text-[#bfc6ea] font-medium">
+                Management System
+              </div>
             </div>
           </div>
           <div className="text-[#c7d2ee] text-sm mb-4">
-            A secure and efficient platform for healthcare appointment scheduling, patient management, and seamless medical team communication.
+            A secure and efficient platform for healthcare appointment
+            scheduling, patient management, and seamless medical team
+            communication.
           </div>
           <ul className="text-[#92b5d4] text-sm space-y-2">
             <li className="flex items-center gap-2">
               <span>✉️</span>
-              <a href="mailto:support@mediqueue.com" className="hover:underline">
+              <a
+                href="mailto:support@mediqueue.com"
+                className="hover:underline"
+              >
                 support@mediqueue.com
               </a>
             </li>
@@ -41,16 +50,36 @@ const Footer = () => {
           </div>
           <ul className="flex flex-col gap-3 text-[#c7d2ee] font-medium">
             <li>
-              <a href="/" className="hover:text-[#75d5f6] hover:underline transition">Home</a>
+              <a
+                href="/"
+                className="hover:text-[#75d5f6] hover:underline transition"
+              >
+                Home
+              </a>
             </li>
             <li>
-              <a href="/login" className="hover:text-[#75d5f6] hover:underline transition">Login</a>
+              <a
+                href="/login"
+                className="hover:text-[#75d5f6] hover:underline transition"
+              >
+                Login
+              </a>
             </li>
             <li>
-              <a href="/signup" className="hover:text-[#75d5f6] hover:underline transition">Sign Up</a>
+              <a
+                href="/signup"
+                className="hover:text-[#75d5f6] hover:underline transition"
+              >
+                Sign Up
+              </a>
             </li>
             <li>
-              <a href="/about" className="hover:text-[#75d5f6] hover:underline transition">About Us</a>
+              <a
+                href="/about"
+                className="hover:text-[#75d5f6] hover:underline transition"
+              >
+                About Us
+              </a>
             </li>
           </ul>
         </div>
@@ -63,27 +92,50 @@ const Footer = () => {
             Follow us on social media for updates and announcements.
           </div>
           <div className="flex space-x-3 mt-1">
-            <a href="https://facebook.com" aria-label="Facebook" className="p-2 rounded-lg bg-[#292e43] hover:bg-[#3b82f6]"><i className="fab fa-facebook-f text-lg"></i></a>
-            <a href="https://twitter.com" aria-label="Twitter" className="p-2 rounded-lg bg-[#292e43] hover:bg-[#38bdf8]"><i className="fab fa-twitter text-lg"></i></a>
-            <a href="https://linkedin.com" aria-label="LinkedIn" className="p-2 rounded-lg bg-[#292e43] hover:bg-[#818cf8]"><i className="fab fa-linkedin-in text-lg"></i></a>
-            <a href="https://github.com" aria-label="Github" className="p-2 rounded-lg bg-[#292e43] hover:bg-[#94a3b8]"><i className="fab fa-github text-lg"></i></a>
+            <a
+              href="https://facebook.com"
+              aria-label="Facebook"
+              className="p-2 rounded-lg bg-[#292e43] hover:bg-[#3b82f6]"
+            >
+              <i className="fab fa-facebook-f text-lg"></i>
+            </a>
+            <a
+              href="https://twitter.com"
+              aria-label="Twitter"
+              className="p-2 rounded-lg bg-[#292e43] hover:bg-[#38bdf8]"
+            >
+              <i className="fab fa-twitter text-lg"></i>
+            </a>
+            <a
+              href="https://linkedin.com"
+              aria-label="LinkedIn"
+              className="p-2 rounded-lg bg-[#292e43] hover:bg-[#818cf8]"
+            >
+              <i className="fab fa-linkedin-in text-lg"></i>
+            </a>
+            <a
+              href="https://github.com"
+              aria-label="Github"
+              className="p-2 rounded-lg bg-[#292e43] hover:bg-[#94a3b8]"
+            >
+              <i className="fab fa-github text-lg"></i>
+            </a>
           </div>
         </div>
       </div>
       <div className="mt-14 border-t border-[#222848] opacity-70" />
       <div className="text-center mt-6 text-xs text-[#6edcfa] font-medium pb-4 flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center max-w-7xl mx-auto px-8">
         <div>© {new Date().getFullYear()} MediQueue. All rights reserved.</div>
-        <div className="text-[#b196ff]">Crafted with <span className="text-pink-400">♥</span> for patients and healthcare professionals</div>
+        <div className="text-[#b196ff]">
+          Crafted with <span className="text-pink-400">♥</span> for patients and
+          healthcare professionals
+        </div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
-
-
-
-
 
 // import React from "react";
 // import { assets } from "../assets/assets";
