@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../context/AdminContext";
 import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
-
 import {
   LineChart,
   Line,
@@ -33,6 +32,9 @@ const Dashboard = () => {
 
   const [liveAppointmentsData, setLiveAppointmentsData] = useState([]);
   const [specialtyData, setSpecialtyData] = useState([]);
+
+  // For showing lists
+  const [showList, setShowList] = useState(""); // "doctors" or "patients" or ""
 
   useEffect(() => {
     if (atoken) {
@@ -90,48 +92,142 @@ const Dashboard = () => {
           Admin Dashboard
         </h1>
 
-        {/* Summary Cards */}
-        <div className="flex flex-wrap gap-8 justify-between mb-12">
-          <div className="flex-1 min-w-[240px] mr-4 flex items-center gap-4 bg-white p-6 rounded-xl border border-gray-200 shadow-xl hover:shadow-2xl transition-all cursor-pointer">
-            <img
-              className="w-16 drop-shadow-lg"
-              src={assets.doctor_icon}
-              alt="Doctors"
-            />
-            <div>
-              <p className="text-3xl font-bold text-indigo-700">
-                {dashData.doctors}
-              </p>
-              <p className="text-gray-500 font-medium">Doctors</p>
-            </div>
+        {/* Summary Cards - updated colors and sizes */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-12">
+          <div
+            className="rounded-xl min-h-[110px] flex flex-col justify-center items-start px-8 py-6 shadow-lg
+            bg-gradient-to-r from-blue-400 via-blue-600 to-blue-700 relative overflow-hidden cursor-pointer hover:scale-105 transition"
+            onClick={() => setShowList(showList === "doctors" ? "" : "doctors")}
+            title="Click to view Doctors"
+          >
+            <span className="absolute top-5 right-6 bg-blue-100 rounded-full p-2 text-blue-600 shadow">
+              <img src={assets.doctor_icon} alt="Doctors" className="w-8 h-8" />
+            </span>
+            <p className="text-lg font-bold text-white opacity-90 mb-1">
+              Doctors
+            </p>
+            <p className="text-3xl font-extrabold text-white mb-1">
+              {dashData.doctors}
+            </p>
+            <span className="text-sm text-white opacity-75">Click to view</span>
           </div>
-          <div className="flex-1 min-w-[240px] mr-4 flex items-center gap-4 bg-white p-6 rounded-xl border border-gray-200 shadow-xl hover:shadow-2xl transition-all cursor-pointer">
-            <img
-              className="w-16 drop-shadow-lg"
-              src={assets.appointments_icon}
-              alt="Appointments"
-            />
-            <div>
-              <p className="text-3xl font-bold text-indigo-700">
-                {dashData.appointments}
-              </p>
-              <p className="text-gray-500 font-medium">Appointments</p>
-            </div>
+          <div
+            className="rounded-xl min-h-[110px] flex flex-col justify-center items-start px-8 py-6 shadow-lg
+            bg-gradient-to-r from-green-400 via-green-600 to-green-700 relative overflow-hidden cursor-pointer hover:scale-105 transition"
+            onClick={() =>
+              setShowList(showList === "patients" ? "" : "patients")
+            }
+            title="Click to view Patients"
+          >
+            <span className="absolute top-5 right-6 bg-green-100 rounded-full p-2 text-green-600 shadow">
+              <img
+                src={assets.patients_icon}
+                alt="Patients"
+                className="w-8 h-8"
+              />
+            </span>
+            <p className="text-lg font-bold text-white opacity-90 mb-1">
+              Patients
+            </p>
+            <p className="text-3xl font-extrabold text-white mb-1">
+              {dashData.patients}
+            </p>
+            <span className="text-sm text-white opacity-75">Click to view</span>
           </div>
-          <div className="flex-1 min-w-[240px] flex items-center gap-4 bg-white p-6 rounded-xl border border-gray-200 shadow-xl hover:shadow-2xl transition-all cursor-pointer">
-            <img
-              className="w-16 drop-shadow-lg"
-              src={assets.patients_icon}
-              alt="Patients"
-            />
-            <div>
-              <p className="text-3xl font-bold text-indigo-700">
-                {dashData.patients}
-              </p>
-              <p className="text-gray-500 font-medium">Patients</p>
-            </div>
+          <div
+            className="rounded-xl min-h-[110px] flex flex-col justify-center items-start px-8 py-6 shadow-lg
+            bg-gradient-to-r from-pink-400 via-pink-600 to-red-500 relative overflow-hidden cursor-pointer hover:scale-105 transition"
+          >
+            <span className="absolute top-5 right-6 bg-pink-100 rounded-full p-2 text-pink-500 shadow">
+              <img
+                src={assets.appointments_icon}
+                alt="Appointments"
+                className="w-8 h-8"
+              />
+            </span>
+            <p className="text-lg font-bold text-white opacity-90 mb-1">
+              Appointments
+            </p>
+            <p className="text-3xl font-extrabold text-white mb-1">
+              {dashData.appointments}
+            </p>
+            <span className="text-sm text-white opacity-75">Click to view</span>
           </div>
         </div>
+
+        {/* Show the doctors or patients list if selected */}
+        {showList === "doctors" && (
+          <div className="bg-white mb-10 rounded-2xl shadow-md px-10 py-6 max-h-[340px] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-2xl font-bold text-blue-700">All Doctors</h3>
+              <button
+                className="text-blue-500 px-4 py-1 rounded-lg hover:bg-blue-100 transition"
+                onClick={() => setShowList("")}
+              >
+                Close
+              </button>
+            </div>
+            <ul>
+              {dashData.doctorList?.map((doc) => (
+                <li
+                  key={doc._id}
+                  className="flex items-center gap-4 py-2 border-b"
+                >
+                  <img
+                    src={doc.image}
+                    alt={doc.name}
+                    className="w-10 h-10 rounded-full border shadow"
+                  />
+                  <div>
+                    <span className="font-semibold text-gray-900">
+                      {doc.name}
+                    </span>
+                    <span className="block text-gray-500 text-sm">
+                      {doc.speciality}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {showList === "patients" && (
+          <div className="bg-white mb-10 rounded-2xl shadow-md px-10 py-6 max-h-[340px] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-2xl font-bold text-green-700">
+                All Patients
+              </h3>
+              <button
+                className="text-green-700 px-4 py-1 rounded-lg hover:bg-green-100 transition"
+                onClick={() => setShowList("")}
+              >
+                Close
+              </button>
+            </div>
+            <ul>
+              {dashData.patientList?.map((user) => (
+                <li
+                  key={user._id}
+                  className="flex items-center gap-4 py-2 border-b"
+                >
+                  <img
+                    src={user.image}
+                    alt={user.name}
+                    className="w-10 h-10 rounded-full border shadow"
+                  />
+                  <div>
+                    <span className="font-semibold text-gray-900">
+                      {user.name}
+                    </span>
+                    <span className="block text-gray-500 text-sm">
+                      Age: {user.age}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Graph Section */}
         <div className="bg-white rounded-2xl border border-indigo-100 shadow-xl mb-12 py-8 px-6">
