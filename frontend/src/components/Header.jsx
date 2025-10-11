@@ -3,20 +3,20 @@ import { assets } from "../assets/assets";
 
 const Header = () => {
   return (
-    <div className="relative w-full min-h-[630px] flex flex-col md:flex-row flex-wrap bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg px-6 md:px-10 lg:px-20 overflow-hidden">
-      {/**-----------Left Side------- */}
-      <div className="md:w-1/2 flex flex-col items-start justify-center gap-6 py-12 md:py-[8vw]">
-        <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-snug">
+    <div className="relative w-full min-h-[630px] flex flex-col md:flex-row flex-wrap bg-gradient-to-r from-[#e9fafe] via-[#e4ebfc] to-[#e3f9fe] px-8 md:px-16 lg:px-24 pt-50 pb-10 md:pb-20 shadow-inner">
+      {/* Left Side */}
+      <div className="md:w-1/2 flex flex-col items-start justify-center gap-8">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center md:text-left bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#ec4899] bg-clip-text text-transparent leading-tight drop-shadow-lg">
           Book Appointments <br /> with Trusted Doctors
-        </p>
+        </h1>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-6">
           <img
             src={assets.group_profiles}
             alt="group"
-            className="w-36 h-auto drop-shadow-md"
+            className="w-40 h-auto rounded-lg shadow-lg"
           />
-          <p className="text-base md:text-lg text-white/90">
+          <p className="text-lg text-[#4e5d77] max-w-md">
             Your health matters. Browse our trusted doctors and schedule
             appointments effortlessly.
           </p>
@@ -24,17 +24,17 @@ const Header = () => {
 
         <a
           href="#speciality"
-          className="flex items-center gap-2 bg-white px-8 py-3 rounded-full text-gray-700 text-sm font-medium shadow hover:shadow-lg hover:scale-105 transition-all duration-300"
+          className="inline-flex items-center gap-3 bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#ec4899] text-white text-lg font-semibold px-10 py-4 rounded-full shadow-lg hover:brightness-110 transition"
         >
           Book Appointment
-          <img className="w-4" src={assets.arrow_icon} alt="arrow" />
+          <img className="w-5" src={assets.arrow_icon} alt="arrow" />
         </a>
       </div>
 
-      {/**---------Right Side------- */}
-      <div className="md:w-1/2 relative flex items-end justify-center mt-0 mb-5">
+      {/* Right Side */}
+      <div className="md:w-1/2 flex items-center justify-center mt-12 md:mt-0">
         <img
-          className="w-full md:w-[90%] lg:w-[85%] rounded-2xl shadow-xl object-contain md:object-cover"
+          className="w-full max-w-lg rounded-3xl shadow-2xl object-contain"
           src={assets.header_img}
           alt="doctor"
         />
@@ -44,6 +44,7 @@ const Header = () => {
 };
 
 export default Header;
+
 
 // import React from "react";
 // import { assets } from "../assets/assets";
