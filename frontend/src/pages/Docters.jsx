@@ -23,7 +23,7 @@ const Docters = () => {
   }, [doctors, speciality]);
 
   const specialties = [
-    { name: "General Physician", icon: "🩺" },
+    { name: "General physician", icon: "🩺" },
     { name: "Gynecologist", icon: "👩‍⚕️" },
     { name: "Dermatologist", icon: "💊" },
     { name: "Pediatrician", icon: "🧒" },

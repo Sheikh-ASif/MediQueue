@@ -86,214 +86,215 @@ export const specialityData = [
 ]
 
 export const doctors = [
-    {
-        _id: 'doc1',
-        name: 'Dr. Richard James',
-        image: doc1,
-        speciality: 'General physician',
-        degree: 'MBBS',
-        experience: '4 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 50,
-        address: {
-            line1: '17th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  {
+    _id: 'doc1',
+    name: 'Dr. Rajesh Kumar',
+    image: doc1,
+    speciality: 'General Physician',
+    degree: 'MBBS, MD',
+    experience: '12 Years',
+    about: 'Dr. Rajesh Kumar provides comprehensive medical care with a focus on preventive medicine and patient wellness.',
+    fees: 700,
+    address: {
+      line1: 'Sector 22',
+      line2: 'Dwarka, New Delhi, India',
     },
-    {
-        _id: 'doc2',
-        name: 'Dr. Emily Larson',
-        image: doc2,
-        speciality: 'Gynecologist',
-        degree: 'MBBS',
-        experience: '3 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 60,
-        address: {
-            line1: '27th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc2',
+    name: 'Dr. Neha Sharma',
+    image: doc2,
+    speciality: 'Gynecologist',
+    degree: 'MBBS, MS',
+    experience: '8 Years',
+    about: 'Experienced Gynecologist specializing in women’s health and prenatal care, practicing in Mumbai.',
+    fees: 850,
+    address: {
+      line1: 'Bandra West',
+      line2: 'Mumbai, Maharashtra, India',
     },
-    {
-        _id: 'doc3',
-        name: 'Dr. Sarah Patel',
-        image: doc3,
-        speciality: 'Dermatologist',
-        degree: 'MBBS',
-        experience: '1 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 30,
-        address: {
-            line1: '37th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc3',
+    name: 'Dr. Anjali Singh',
+    image: doc3,
+    speciality: 'Dermatologist',
+    degree: 'MBBS, Dermatology',
+    experience: '6 Years',
+    about: 'Dr. Anjali Singh is an expert in skin care treatments and cosmetic dermatology in Bengaluru.',
+    fees: 500,
+    address: {
+      line1: 'MG Road',
+      line2: 'Bengaluru, Karnataka, India',
     },
-    {
-        _id: 'doc4',
-        name: 'Dr. Christopher Lee',
-        image: doc4,
-        speciality: 'Pediatricians',
-        degree: 'MBBS',
-        experience: '2 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 40,
-        address: {
-            line1: '47th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc4',
+    name: 'Dr. Rahul Patil',
+    image: doc4,
+    speciality: 'Pediatrician',
+    degree: 'MBBS, MD',
+    experience: '7 Years',
+    about: 'Dr. Rahul Patil dedicated to child health care and immunizations in Pune.',
+    fees: 600,
+    address: {
+      line1: 'Shivajinagar',
+      line2: 'Pune, Maharashtra, India',
     },
-    {
-        _id: 'doc5',
-        name: 'Dr. Jennifer Garcia',
-        image: doc5,
-        speciality: 'Neurologist',
-        degree: 'MBBS',
-        experience: '4 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 50,
-        address: {
-            line1: '57th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc5',
+    name: 'Dr. Priya Menon',
+    image: doc5,
+    speciality: 'Neurologist',
+    degree: 'MBBS, DM',
+    experience: '10 Years',
+    about: 'Neurology specialist focusing on brain and nervous system disorders in Chennai.',
+    fees: 900,
+    address: {
+      line1: 'T Nagar',
+      line2: 'Chennai, Tamil Nadu, India',
     },
-    {
-        _id: 'doc6',
-        name: 'Dr. Andrew Williams',
-        image: doc6,
-        speciality: 'Neurologist',
-        degree: 'MBBS',
-        experience: '4 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 50,
-        address: {
-            line1: '57th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc6',
+    name: 'Dr. Sanjay Kulkarni',
+    image: doc6,
+    speciality: 'Neurologist',
+    degree: 'MBBS, DM',
+    experience: '12 Years',
+    about: 'Experienced neurologist providing treatment for neurodegenerative diseases in Hyderabad.',
+    fees: 550,
+    address: {
+      line1: 'Banjara Hills',
+      line2: 'Hyderabad, Telangana, India',
     },
-    {
-        _id: 'doc7',
-        name: 'Dr. Christopher Davis',
-        image: doc7,
-        speciality: 'General physician',
-        degree: 'MBBS',
-        experience: '4 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 50,
-        address: {
-            line1: '17th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc7',
+    name: 'Dr. Kavita Sharma',
+    image: doc7,
+    speciality: 'General Physician',
+    degree: 'MBBS, MD',
+    experience: '9 Years',
+    about: 'General physician specializing in primary health care and preventive medicine in Jaipur.',
+    fees: 650,
+    address: {
+      line1: 'Malviya Nagar',
+      line2: 'Jaipur, Rajasthan, India',
     },
-    {
-        _id: 'doc8',
-        name: 'Dr. Timothy White',
-        image: doc8,
-        speciality: 'Gynecologist',
-        degree: 'MBBS',
-        experience: '3 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 60,
-        address: {
-            line1: '27th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc8',
+    name: 'Dr. Ankit Verma',
+    image: doc8,
+    speciality: 'Gynecologist',
+    degree: 'MBBS, MS',
+    experience: '7 Years',
+    about: 'Expert in gynecology focusing on prenatal and postnatal care in Lucknow.',
+    fees: 750,
+    address: {
+      line1: 'Gomti Nagar',
+      line2: 'Lucknow, Uttar Pradesh, India',
     },
-    {
-        _id: 'doc9',
-        name: 'Dr. Ava Mitchell',
-        image: doc9,
-        speciality: 'Dermatologist',
-        degree: 'MBBS',
-        experience: '1 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 30,
-        address: {
-            line1: '37th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc9',
+    name: 'Dr. Meera Joshi',
+    image: doc9,
+    speciality: 'Dermatologist',
+    degree: 'MBBS, Dermatology',
+    experience: '5 Years',
+    about: 'Skilled dermatologist offering treatments for skin disorders in Ahmedabad.',
+    fees: 500,
+    address: {
+      line1: 'Navrangpura',
+      line2: 'Ahmedabad, Gujarat, India',
     },
-    {
-        _id: 'doc10',
-        name: 'Dr. Jeffrey King',
-        image: doc10,
-        speciality: 'Pediatricians',
-        degree: 'MBBS',
-        experience: '2 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 40,
-        address: {
-            line1: '47th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc10',
+    name: 'Dr. Rohit Singh',
+    image: doc10,
+    speciality: 'Pediatrician',
+    degree: 'MBBS, MD',
+    experience: '8 Years',
+    about: 'Dedicated pediatrician committed to child healthcare in Chandigarh.',
+    fees: 700,
+    address: {
+      line1: 'Sector 17',
+      line2: 'Chandigarh, India',
     },
-    {
-        _id: 'doc11',
-        name: 'Dr. Zoe Kelly',
-        image: doc11,
-        speciality: 'Neurologist',
-        degree: 'MBBS',
-        experience: '4 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 50,
-        address: {
-            line1: '57th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc11',
+    name: 'Dr. Sneha Nair',
+    image: doc11,
+    speciality: 'Neurologist',
+    degree: 'MBBS, DM',
+    experience: '10 Years',
+    about: 'Renowned neurologist focusing on neurorehabilitation in Kochi.',
+    fees: 850,
+    address: {
+      line1: 'Marine Drive',
+      line2: 'Kochi, Kerala, India',
     },
-    {
-        _id: 'doc12',
-        name: 'Dr. Patrick Harris',
-        image: doc12,
-        speciality: 'Gastroenterologist',
-        degree: 'MBBS',
-        experience: '4 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 50,
-        address: {
-            line1: '57th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc12',
+    name: 'Dr. Arvind Rao',
+    image: doc12,
+    speciality: 'Gastroenterologist',
+    degree: 'MBBS, MD',
+    experience: '11 Years',
+    about: 'Gastroenterologist specializing in digestive system disorders in Bengaluru.',
+    fees: 900,
+    address: {
+      line1: 'Koramangala',
+      line2: 'Bengaluru, Karnataka, India',
     },
-    {
-        _id: 'doc13',
-        name: 'Dr. Chloe Evans',
-        image: doc13,
-        speciality: 'General physician',
-        degree: 'MBBS',
-        experience: '4 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 50,
-        address: {
-            line1: '17th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc13',
+    name: 'Dr. Reema Desai',
+    image: doc13,
+    speciality: 'General Physician',
+    degree: 'MBBS, MD',
+    experience: '10 Years',
+    about: 'Experienced general physician providing holistic healthcare in Surat.',
+    fees: 600,
+    address: {
+      line1: 'Adajan',
+      line2: 'Surat, Gujarat, India',
     },
-    {
-        _id: 'doc14',
-        name: 'Dr. Ryan Martinez',
-        image: doc14,
-        speciality: 'Gynecologist',
-        degree: 'MBBS',
-        experience: '3 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 60,
-        address: {
-            line1: '27th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc14',
+    name: 'Dr. Ubaid Rehman',
+    image: doc14,
+    speciality: 'Gynecologist',
+    degree: 'MBBS, MS',
+    experience: '8 Years',
+    about: 'Trusted gynecologist specializing in fertility and prenatal care in New Delhi.',
+    fees: 800,
+    address: {
+      line1: 'Lajpat Nagar',
+      line2: 'New Delhi, India',
     },
-    {
-        _id: 'doc15',
-        name: 'Dr. Amelia Hill',
-        image: doc15,
-        speciality: 'Dermatologist',
-        degree: 'MBBS',
-        experience: '1 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
-        fees: 30,
-        address: {
-            line1: '37th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
-        }
+  },
+  {
+    _id: 'doc15',
+    name: 'Dr. Nuzhat Faisal Khan',
+    image: doc15,
+    speciality: 'Dermatologist',
+    degree: 'MBBS, Dermatology',
+    experience: '11 Years',
+    about: 'Dermatologist with expertise in skin care and cosmetic treatments in Mumbai.',
+    fees: 550,
+    address: {
+      line1: 'Sector 25',
+      line2: 'Indira Nagar, Lucknow, India',
     },
-]
+  },
+];
+

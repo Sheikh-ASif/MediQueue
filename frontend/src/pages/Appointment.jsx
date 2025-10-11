@@ -69,7 +69,7 @@ const Appointment = () => {
 
       
         // Example logic: all slots available
-        currentDate.setMinutes(currentDate.getMinutes() + 30);
+        currentDate.setMinutes(currentDate.getMinutes() + 60);
       }
       setDocSlots(prev => ([...prev, timeSlots]));
     }
