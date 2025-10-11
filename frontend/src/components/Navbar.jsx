@@ -29,24 +29,22 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="flex items-center justify-between px-6 py-2 bg-gradient-to-r from-[#8058e5] via-[#6e49ed] to-[#33cef3] shadow-lg fixed top-0 w-full z-30 min-h-[64px]">
-      <img
-        onClick={() => navigate("/")}
-        className="w-44 h-14 object-contain cursor-pointer hover:opacity-90 transition select-none"
-        src={assets.logo}
-        alt="MediQueue Logo"
-      />
+    <nav className="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-[#c9e7ff] via-[#f5e8ff] to-[#e0e6ff] shadow-lg fixed top-0 w-full z-30 min-h-[64px] border-b-2 border-[#b6c7ff]">
+      <h1 className="text-black font-bold text-2xl tracking-wide select-none cursor-pointer">
+        🏨 Mediqueue
+      </h1>
+
       {token ? (
-        <ul className="hidden md:flex items-center gap-7 font-medium text-base">
+        <ul className="hidden md:flex items-center gap-8 font-semibold text-base">
           {authLinks.map((link) => (
             <NavLink
               key={link.name}
               to={link.path}
               className={({ isActive }) =>
-                `relative py-1 px-2 rounded-md transition text-white duration-200 ${
+                `relative py-1 px-3 rounded-md transition-all duration-300 ${
                   isActive
-                    ? "text-[#ffe373] font-semibold"
-                    : "hover:text-[#2ad6f8]"
+                    ? "text-[#8b5cf6] font-bold after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-1 after:bg-[#8b5cf6]"
+                    : "text-[#25376a] hover:text-[#3b82f6] hover:bg-[#f5e8ff]/70"
                 }`
               }
             >
@@ -55,16 +53,16 @@ const Navbar = () => {
           ))}
         </ul>
       ) : (
-        <div className="hidden md:flex items-center gap-6 ml-auto font-medium text-base">
+        <div className="hidden md:flex items-center gap-6 ml-auto font-semibold text-base">
           {guestLinks.map((link) => (
             <NavLink
               key={link.name}
               to={link.path}
               className={({ isActive }) =>
-                `relative py-1 px-2 rounded-md transition text-white duration-200 ${
+                `relative py-1 px-3 rounded-md transition-all duration-300 ${
                   isActive
-                    ? "text-[#ffe373] font-semibold"
-                    : "hover:text-[#2ad6f8]"
+                    ? "text-[#3b82f6] font-bold after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-1 after:bg-[#3b82f6]"
+                    : "text-[#25376a] hover:text-[#8b5cf6] hover:bg-[#e0e6ff]/60"
                 }`
               }
             >
@@ -73,7 +71,7 @@ const Navbar = () => {
           ))}
           <button
             onClick={() => navigate("/login")}
-            className="bg-[#ffe373] text-[#333] px-6 py-2 rounded-full font-semibold ml-2 shadow hover:bg-[#2ad6f8] hover:text-white transition"
+            className="bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] text-white px-6 py-2 rounded-full font-bold ml-2 shadow hover:from-[#2563eb] hover:to-[#7c3aed] transition-all duration-300"
           >
             Create Account
           </button>
@@ -85,7 +83,7 @@ const Navbar = () => {
           <div className="relative">
             <div className="flex items-center gap-2 cursor-pointer group select-none">
               <img
-                className="w-9 h-9 rounded-full border-2 border-white/20 shadow"
+                className="w-9 h-9 rounded-full border-2 border-[#8b5cf6]/40 shadow"
                 src={userData.image}
                 alt="profile"
               />
@@ -94,23 +92,23 @@ const Navbar = () => {
                 src={assets.dropdown_icon}
                 alt="dropdown"
               />
-              <div className="absolute right-0 top-12 w-56 bg-white rounded-xl shadow-lg border border-gray-200 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 origin-top-right z-30">
-                <div className="flex flex-col gap-2 py-3 px-4 text-gray-600 text-sm font-medium">
+              <div className="absolute right-0 top-12 w-56 bg-gradient-to-br from-[#f5e8ff] to-[#e0e6ff] text-[#25376a] rounded-xl shadow-lg border border-[#c9e7ff] opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 origin-top-right z-30">
+                <div className="flex flex-col gap-2 py-3 px-4 text-sm font-bold">
                   <p
                     onClick={() => navigate("my-profile")}
-                    className="hover:bg-[#f2efff] hover:text-blue-600 px-3 py-2 rounded-lg cursor-pointer transition"
+                    className="hover:bg-[#8b5cf6]/20 hover:text-[#8b5cf6] px-3 py-2 rounded-lg cursor-pointer transition"
                   >
                     👤 My Profile
                   </p>
                   <p
                     onClick={() => navigate("my-appointments")}
-                    className="hover:bg-[#f2efff] hover:text-blue-600 px-3 py-2 rounded-lg cursor-pointer transition"
+                    className="hover:bg-[#3b82f6]/20 hover:text-[#3b82f6] px-3 py-2 rounded-lg cursor-pointer transition"
                   >
                     📅 My Appointments
                   </p>
                   <p
                     onClick={logout}
-                    className="hover:bg-red-50 hover:text-red-600 px-3 py-2 rounded-lg cursor-pointer transition"
+                    className="hover:bg-[#ec4899]/10 hover:text-[#ec4899] px-3 py-2 rounded-lg cursor-pointer transition"
                   >
                     🚪 Logout
                   </p>
@@ -121,7 +119,7 @@ const Navbar = () => {
         )}
         <img
           onClick={() => setShowMenu(true)}
-          className="w-7 md:hidden cursor-pointer"
+          className="w-7 md:hidden cursor-pointer invert brightness-0"
           src={assets.menu_icon}
           alt="menu"
         />
@@ -129,11 +127,11 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-gradient-to-br from-[#8058e5] via-[#6e49ed] to-[#33cef3] text-white shadow-xl z-50 transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-64 bg-gradient-to-br from-[#c9e7ff] via-[#f6e8ff] to-[#e0e6ff] text-[#25376a] shadow-2xl z-50 transform transition-transform duration-300 ${
           showMenu ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between px-5 py-6 border-b border-white/20">
+        <div className="flex items-center justify-between px-5 py-6 border-b border-[#b6c7ff]">
           <img className="w-32" src={assets.logo} alt="logo" />
           <img
             className="w-8 cursor-pointer"
@@ -142,13 +140,13 @@ const Navbar = () => {
             alt="close"
           />
         </div>
-        <ul className="flex flex-col items-start gap-4 mt-7 px-6 text-lg font-semibold">
+        <ul className="flex flex-col items-start gap-5 mt-7 px-6 text-lg font-bold">
           {(token ? authLinks : guestLinks).map((link) => (
             <NavLink
               key={link.name}
               onClick={() => setShowMenu(false)}
               to={link.path}
-              className="hover:text-[#ffe373] transition"
+              className="hover:text-[#8b5cf6] hover:bg-[#e0e6ff]/70 transition-all duration-200 px-2 py-1 rounded-md w-full"
             >
               {link.name}
             </NavLink>
@@ -159,7 +157,7 @@ const Navbar = () => {
                 setShowMenu(false);
                 navigate("/login");
               }}
-              className="bg-[#ffe373] text-[#222] px-6 py-2 rounded-full font-semibold mt-2 hover:bg-[#2ad6f8] hover:text-white transition w-full text-center"
+              className="bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] text-white px-6 py-2 rounded-full font-bold mt-3 hover:from-[#2563eb] hover:to-[#7c3aed] transition-all duration-300 w-full text-center shadow"
             >
               Create Account
             </button>
@@ -171,6 +169,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
 
 // import React, { useContext, useState } from "react";
