@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
@@ -33,29 +32,31 @@ const Docters = () => {
   ];
 
   return (
-    <div className="py-6">
+    <div className="py-6 px-6 bg-gradient-to-b from-white via-[#f0f4ff] to-white min-h-screen pt-20 pb-5">
       {/* Page Heading */}
-      <h2 className="text-2xl font-bold text-gray-800">
+      <h2 className="text-3xl font-bold text-indigo-900 mb-1 text-center md:text-left">
         Explore Trusted Medical Specialties
       </h2>
-      <p className="text-gray-600 mt-1 text-sm">
+      <p className="text-indigo-700 text-sm md:text-base mb-6 text-center md:text-left max-w-xl">
         Choose from a wide range of experienced doctors
       </p>
 
-      <div className="flex flex-col sm:flex-row items-start gap-6 mt-8">
+      <div className="flex flex-col sm:flex-row items-start gap-6">
         {/* Filter Button for Mobile */}
         <button
-          className={`py-2 px-4 border rounded-lg text-sm font-medium transition-all sm:hidden shadow-sm ${
-            showFilter ? "bg-blue-600 text-white" : "bg-white text-gray-700"
+          className={`py-2 px-4 rounded-lg text-sm font-medium transition-all sm:hidden shadow-sm ${
+            showFilter
+              ? "bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white shadow-lg"
+              : "bg-white text-indigo-700"
           }`}
           onClick={() => setShowFilter((prev) => !prev)}
         >
           {showFilter ? "Hide Filters" : "Show Filters"}
         </button>
 
-        {/* Sidebar Filters (Icon + Text Nav) */}
+        {/* Sidebar Filters */}
         <div
-          className={`flex flex-col gap-3 text-sm font-medium ${
+          className={`flex flex-col gap-3 text-sm font-medium w-full max-w-xs ${
             showFilter ? "flex" : "hidden sm:flex"
           }`}
         >
@@ -67,12 +68,11 @@ const Docters = () => {
                   ? navigate("/docters")
                   : navigate(`/docters/${spec.name}`)
               }
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg border text-left transition-all duration-200 cursor-pointer
-                ${
-                  speciality === spec.name
-                    ? "bg-blue-600 text-white shadow-md border-blue-600"
-                    : "bg-gray-50 text-gray-700 hover:bg-blue-50 hover:text-blue-600 border-gray-200"
-                }`}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg border cursor-pointer transition-all duration-200 ${
+                speciality === spec.name
+                  ? "bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white shadow-md border-transparent"
+                  : "bg-white text-indigo-700 border-indigo-200 hover:bg-indigo-100 hover:text-indigo-900"
+              }`}
             >
               <span className="text-lg">{spec.icon}</span>
               {spec.name}
@@ -86,29 +86,39 @@ const Docters = () => {
             <div
               onClick={() => navigate(`/appointment/${item._id}`)}
               key={index}
-              className="border border-gray-200 rounded-2xl overflow-hidden cursor-pointer bg-white shadow hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+              className="bg-white border border-indigo-200 rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300"
             >
               <img
-                className="w-full h-48 object-cover object-top bg-blue-50"
+                className="w-full h-48 object-cover object-top bg-indigo-50"
                 src={item.image}
                 alt={item.name}
               />
-              <div className="p-4 space-y-2">
+              <div className="p-5 space-y-2">
                 {/* Availability */}
-                <div className={`inline-flex items-center gap-2 text-xs font-medium ${item.available ? ' text-green-600' : 'text-red-500'} bg-green-100 px-3 py-1 rounded-full`}>
-                <span className={`w-2 h-2 ${item.available ? 'bg-green-500' :  'bg-gray-500'}  rounded-full`}></span>
-                {item.available ? 'Available' : 'Not Available'}
-              </div>
+                <div
+                  className={`inline-flex items-center gap-2 text-xs font-semibold rounded-full px-3 py-1 ${
+                    item.available
+                      ? "bg-green-100 text-green-700"
+                      : "bg-red-100 text-red-600"
+                  }`}
+                >
+                  <span
+                    className={`w-2 h-2 rounded-full ${
+                      item.available ? "bg-green-600" : "bg-red-500"
+                    }`}
+                  />
+                  {item.available ? "Available" : "Not Available"}
+                </div>
 
                 {/* Name */}
-                <p className="text-gray-900 text-lg font-semibold">
-                  {item.name}
-                </p>
+                <p className="text-indigo-900 text-lg font-semibold">{item.name}</p>
+
                 {/* Speciality */}
-                <p className="text-gray-600 text-sm">{item.speciality}</p>
+                <p className="text-indigo-700 text-sm">{item.speciality}</p>
+
                 {/* CTA */}
                 <button
-                  className="mt-3 w-full py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition"
+                  className="mt-3 w-full py-2 rounded-lg bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#fb7185] text-white text-sm font-medium hover:brightness-110 transition"
                   onClick={(e) => {
                     e.stopPropagation();
                     navigate(`/appointment/${item._id}`);
@@ -126,3 +136,4 @@ const Docters = () => {
 };
 
 export default Docters;
+
