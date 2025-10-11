@@ -119,7 +119,7 @@ const Appointment = () => {
   useEffect(() => { if (docInfo) getAvailableSlots(); }, [docInfo]);
 
   return docInfo && (
-    <div className="px-6 md:px-12 lg:px-20 py-10">
+    <div className="px-6 md:px-12 lg:px-20 py-10 pt-22">
       {/* Doctor Profile */}
       <div className="flex flex-col sm:flex-row gap-6 items-start">
         <img className="w-full sm:w-72 rounded-2xl shadow-md" src={docInfo.image} alt={docInfo.name} />
