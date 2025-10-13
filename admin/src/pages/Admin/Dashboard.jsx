@@ -317,6 +317,7 @@ const Dashboard = () => {
                   src={item.docData.image}
                   alt={item.docData.name}
                 />
+                
                 <div className="flex-1 text-base">
                   <p className="text-gray-800 font-semibold">
                     {item.docData.name}

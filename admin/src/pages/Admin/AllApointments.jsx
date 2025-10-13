@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../context/AdminContext";
 import { AppContext } from "../../context/AppContext";
+import { useNavigate } from 'react-router-dom'
 
 const NUM_RECENT = 5;
 
@@ -38,6 +39,7 @@ const cardConfig = [
 const AllApointments = () => {
   const { atoken, appointments, getAllAppointments, cancelAppointment } = useContext(AdminContext);
   const { calculateAge, slotDateFormat, currency } = useContext(AppContext);
+  const navigate = useNavigate()
 
   const [filter, setFilter] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -96,10 +98,10 @@ const AllApointments = () => {
       {/* TOP ACTIONS */}
       <div className="flex flex-wrap gap-3 items-center justify-between mb-10">
         <div className="flex gap-3">
-          <button className="bg-blue-50 text-blue-700 px-4 py-2 font-semibold rounded-lg shadow hover:bg-blue-100">Show Analytics</button>
-          <button className="bg-green-50 text-green-700 px-4 py-2 font-semibold rounded-lg shadow hover:bg-green-100">Summary Report</button>
-          <button className="bg-purple-50 text-purple-700 px-4 py-2 font-semibold rounded-lg shadow hover:bg-purple-100">Date Filter</button>
-          <button className="bg-pink-50 text-pink-700 px-4 py-2 font-semibold rounded-lg shadow hover:bg-pink-100">Export Data</button>
+          <button className="bg-blue-50 text-blue-700 px-4 py-2 font-semibold rounded-lg shadow hover:bg-blue-100" onClick={()=> navigate('/analytics')}>Show Analytics</button>
+          <button className="bg-green-50 text-green-700 px-4 py-2 font-semibold rounded-lg shadow hover:bg-green-100" onClick={()=> navigate('/summary-report')}>Summary Report</button>
+          <button className="bg-purple-50 text-purple-700 px-4 py-2 font-semibold rounded-lg shadow hover:bg-purple-100" onClick={()=> navigate('/date-filter')}>Date Filter</button>
+          <button className="bg-pink-50 text-pink-700 px-4 py-2 font-semibold rounded-lg shadow hover:bg-pink-100" onClick={()=> navigate('/export-data')}>Export Data</button>
         </div>
         <div className="flex gap-2 items-center">
           <select
