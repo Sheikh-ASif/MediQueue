@@ -96,6 +96,18 @@ const allDoctors = async (req,res) => {
     }
 }
 
+// API to get all patients for admin panel
+const allPatients = async (req, res) => {
+  try {
+    // If you have a 'role' or similar, use it: { role: 'patient' }
+    const patients = await userModel.find({});
+    res.json({ success: true, patients });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
 //Api to get all appointments list
 
 const appointmentsAdmin = async (req,res) => {
@@ -185,6 +197,8 @@ const adminDashboard = async (req, res) => {
     }
 }
 
+export { addDoctor, loginAdmin, allDoctors, allPatients, appointmentsAdmin, appointmentCancel, adminDashboard };
+
 // //api to get the dashboard data for admin pannel 
 
 // const adminDashboard = async (req,res) => {
@@ -222,8 +236,6 @@ const adminDashboard = async (req, res) => {
 // }
 
 
-
-export { addDoctor, loginAdmin, allDoctors, appointmentsAdmin, appointmentCancel, adminDashboard };
 
 
 
