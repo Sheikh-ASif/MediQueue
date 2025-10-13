@@ -15,21 +15,24 @@ import info_icon from './info_icon.svg'
 import upload_icon from './upload_icon.png'
 import stripe_logo from './stripe_logo.png'
 import razorpay_logo from './razorpay_logo.png'
-import doc1 from './doc1.png'
-import doc2 from './doc2.png'
-import doc3 from './doc3.png'
-import doc4 from './doc4.png'
-import doc5 from './doc5.png'
+// import doc1 from './doc1.jpg'
+import doc1 from './doc1.jpg'
+import doc2 from './doc2.jpg'
+import doc3 from './doc3.jpg'
+import doc4 from './doc4.webp'
+import doc5 from './doc5.webp'
 import doc6 from './doc6.png'
-import doc7 from './doc7.png'
-import doc8 from './doc8.png'
-import doc9 from './doc9.png'
-import doc10 from './doc10.png'
+import doc7 from './doc7.jpg'
+import doc8 from './doc8.webp'
+import doc9 from './doc9.jpg'
+import doc10 from './doc10.avif'
 import doc11 from './doc11.png'
-import doc12 from './doc12.png'
-import doc13 from './doc13.png'
+import doc12 from './doc12.avif'
+import doc13 from './doc13.jpg'
 import doc14 from './doc14.png'
-import doc15 from './doc15.png'
+import doc15 from './doc15.jpg'
+import doc16 from './doc16.webp'
+import doc17 from './doc17.webp'
 import Dermatologist from './Dermatologist.svg'
 import Gastroenterologist from './Gastroenterologist.svg'
 import General_physician from './General_physician.svg'
@@ -60,7 +63,7 @@ export const assets = {
 
 export const specialityData = [
     {
-        speciality: 'General physician',
+        speciality: 'General Physician',
         image: General_physician
     },
     {
@@ -242,7 +245,7 @@ export const doctors = [
   },
   {
     _id: 'doc12',
-    name: 'Dr. Arvind Rao',
+    name: 'Dr. Sadaf Aziz ',
     image: doc12,
     speciality: 'Gastroenterologist',
     degree: 'MBBS, MD',
@@ -294,6 +297,34 @@ export const doctors = [
     address: {
       line1: 'Sector 25',
       line2: 'Indira Nagar, Lucknow, India',
+    },
+  },
+  {
+    _id: 'doc16',
+    name: 'Dr. Rizwan Abbas',
+    image: doc16,
+    speciality: 'Pediatrician',
+    degree: 'MBBS, MD',
+    experience: '9 Years',
+    about: 'Dr. Rizwan Abbas dedicated to child health care and immunizations in New Delhi.',
+    fees: 650,
+    address: {
+      line1: 'Shiv Nagar',
+      line2: 'New Delhi, India',
+    },
+  },
+  {
+    _id: 'doc12',
+    name: 'Dr. Farah Nadeem ',
+    image: doc17,
+    speciality: 'Gastroenterologist',
+    degree: 'MBBS, MS',
+    experience: '10 Years',
+    about: 'Gastroenterologist specializing in digestive system disorders in Jammu & Kashmir.',
+    fees: 450,
+    address: {
+      line1: 'Baramulla',
+      line2: 'Baramulla Town, Jammu & Kashmir, India',
     },
   },
 ];
