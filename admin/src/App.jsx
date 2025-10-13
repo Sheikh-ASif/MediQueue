@@ -14,6 +14,10 @@ import { DoctorContext } from "./context/DoctorContext";
 import DoctorDashboard from "./pages/Doctor/DoctorDashboard";
 import DoctorAppointments from "./pages/Doctor/DoctorAppointments";
 import DoctorProfile from "./pages/Doctor/DoctorProfile";
+import Analytics from "./components/Analytics";
+import SummaryReport from "./components/SummaryReport";
+import DateFilter from "./components/DateFilter";
+import ExportData from "./components/ExportData";
 
 const App = () => {
   const { atoken } = useContext(AdminContext);
@@ -32,6 +36,13 @@ const App = () => {
           <Route path="/all-appointments" element={<AllApointments />} />
           <Route path="/add-doctor" element={<AddDoctor />} />
           <Route path="/doctor-list" element={<DoctorsList />} />
+
+
+          {/**Features Routes */}
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/summary-report" element={<SummaryReport />} />
+          <Route path="/date-filter" element={<DateFilter />} />
+          <Route path="/export-data" element={<ExportData />} />
 
           {/**Doctor Routes */}
           {/* <Route path='/' element={<></>} /> */}
