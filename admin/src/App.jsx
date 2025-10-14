@@ -19,6 +19,9 @@ import SummaryReport from "./components/SummaryReport";
 import DateFilter from "./components/DateFilter";
 import ExportData from "./components/ExportData";
 
+//For the userDetails 
+import AdminUsersPage from "./components/AdminUsersPage";
+
 const App = () => {
   const { atoken } = useContext(AdminContext);
   const { dtoken } = useContext(DoctorContext);
@@ -43,6 +46,12 @@ const App = () => {
           <Route path="/summary-report" element={<SummaryReport />} />
           <Route path="/date-filter" element={<DateFilter />} />
           <Route path="/export-data" element={<ExportData />} />
+
+          {/**User Details Route */}
+          <Route path="/admin-users" element={<AdminUsersPage />} />
+
+
+
 
           {/**Doctor Routes */}
           {/* <Route path='/' element={<></>} /> */}
