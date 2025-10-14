@@ -44,9 +44,11 @@ const Login = () => {
     }
   }, [token, navigate])
 
+
   return (
     <div className="pt-20 min-h-[90vh] flex items-center justify-center bg-gradient-to-tr from-[#f6f8ff] to-[#ebf3fd]">
       <div className="flex flex-col md:flex-row gap-8 w-full max-w-5xl items-center justify-center">
+
         {/* Left Card: What We Provide */}
         <div className="w-full md:w-1/4 bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center mb-6 md:mb-0">
           <h3 className="text-xl font-bold mb-4 text-[#339cf7]">What We Provide</h3>
@@ -61,29 +63,11 @@ const Login = () => {
 
         {/* Center: Login/SignUp Form */}
         <div className="flex flex-col w-full md:w-2/5 bg-white rounded-2xl shadow-2xl p-14 mt-16 mb-16">
-          {/* Toggle Buttons */}
-          <div className="flex justify-center gap-6 mb-12 font-semibold text-lg">
-            <button
-              className={`px-5 py-3 rounded-full transition ${
-                state === 'Login'
-                  ? 'bg-gradient-to-r from-[#7a5cff] via-[#339cf7] to-[#33cef3] text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-500'
-              }`}
-              onClick={() => setState('Login')}
-            >
-              Login
-            </button>
-            <button
-              className={`px-5 py-3 rounded-full transition ${
-                state === 'Sign Up'
-                  ? 'bg-gradient-to-r from-[#7a5cff] via-[#339cf7] to-[#33cef3] text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-500'
-              }`}
-              onClick={() => setState('Sign Up')}
-            >
-              Sign Up
-            </button>
-          </div>
+
+          {/* Dynamic Title */}
+          <h2 className="text-3xl font-bold text-center mb-8 text-[#7a5cff]">
+            {state === 'Sign Up' ? 'Register' : 'Login'}
+          </h2>
 
           <form onSubmit={onSubmitHandler} className="flex flex-col gap-6">
             {state === "Sign Up" && (
@@ -133,6 +117,30 @@ const Login = () => {
               {state === 'Sign Up' ? "Create Account" : "Login"}
             </button>
           </form>
+
+          {/* Toggle Text Below Button */}
+          {state === 'Login' && (
+            <p className="mt-4 text-center text-sm text-gray-500">
+              Don't have an account?{' '}
+              <span
+                onClick={() => setState('Sign Up')}
+                className="text-[#7a5cff] cursor-pointer font-semibold hover:underline"
+              >
+                Register here
+              </span>
+            </p>
+          )}
+          {state === 'Sign Up' && (
+            <p className="mt-4 text-center text-sm text-gray-500">
+              Already have an account?{' '}
+              <span
+                onClick={() => setState('Login')}
+                className="text-[#7a5cff] cursor-pointer font-semibold hover:underline"
+              >
+                Login here
+              </span>
+            </p>
+          )}
         </div>
 
         {/* Right Card: Why Choose Us */}
@@ -152,6 +160,7 @@ const Login = () => {
 };
 
 export default Login;
+
 
 
 
