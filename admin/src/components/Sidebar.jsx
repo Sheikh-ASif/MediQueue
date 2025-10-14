@@ -33,6 +33,7 @@ const Sidebar = () => {
             />
             <span>Dashboard</span>
           </NavLink>
+
           <NavLink
             to="/all-appointments"
             className={({ isActive }) =>
@@ -50,23 +51,26 @@ const Sidebar = () => {
             />
             <span>Appointments</span>
           </NavLink>
+
           <NavLink
-            to="/add-doctor"
+            to="/admin-users"
             className={({ isActive }) =>
               `flex items-center gap-3 py-3 px-4 md:px-7 rounded-xl shadow-sm transition-all duration-300 group ${
                 isActive
-                  ? `${activeGradient} border-l-4 border-green-400 text-green-700 font-bold`
+                  ? `${activeGradient} border-l-4 border-blue-400 text-blue-700 font-bold`
                   : `${linkGradient} text-gray-700`
               }`
             }
           >
+            {/* same as Appointments */}
             <img
               className="w-5 h-5 opacity-80 group-hover:scale-110 transition-transform"
-              src={assets.add_icon}
-              alt="Add Doctor"
+              src={assets.people_icon} 
+              alt="Users"
             />
-            <span>Add Doctor</span>
+            <span>Users</span>
           </NavLink>
+
           <NavLink
             to="/doctor-list"
             className={({ isActive }) =>
@@ -83,6 +87,24 @@ const Sidebar = () => {
               alt="Doctors List"
             />
             <span>Doctors List</span>
+          </NavLink>
+
+          <NavLink
+            to="/add-doctor"
+            className={({ isActive }) =>
+              `flex items-center gap-3 py-3 px-4 md:px-7 rounded-xl shadow-sm transition-all duration-300 group ${
+                isActive
+                  ? `${activeGradient} border-l-4 border-green-400 text-green-700 font-bold`
+                  : `${linkGradient} text-gray-700`
+              }`
+            }
+          >
+            <img
+              className="w-5 h-5 opacity-80 group-hover:scale-110 transition-transform"
+              src={assets.add_icon}
+              alt="Add Doctor"
+            />
+            <span>Add Doctor</span>
           </NavLink>
         </ul>
       )}
@@ -106,6 +128,7 @@ const Sidebar = () => {
             />
             <span>Dashboard</span>
           </NavLink>
+
           <NavLink
             to="/doctor-appointments"
             className={({ isActive }) =>
@@ -123,6 +146,7 @@ const Sidebar = () => {
             />
             <span>Appointments</span>
           </NavLink>
+
           <NavLink
             to="/doctor-profile"
             className={({ isActive }) =>
@@ -147,6 +171,8 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+
 
 // import React, { useContext } from "react";
 // import { AdminContext } from "../context/AdminContext";
