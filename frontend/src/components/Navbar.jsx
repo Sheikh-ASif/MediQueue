@@ -71,7 +71,7 @@ const Navbar = () => {
           ))}
           <button
             onClick={() => navigate("/login")}
-            className="bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] text-white px-6 py-2 rounded-full font-bold ml-2 shadow hover:from-[#2563eb] hover:to-[#7c3aed] transition-all duration-300"
+            className="bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] text-white px-6 py-2 rounded-full font-bold ml-2 shadow hover:from-[#2563eb] hover:to-[#7c3aed] transition-all duration-300 cursor-pointer"
           >
             Create Account
           </button>
@@ -80,49 +80,60 @@ const Navbar = () => {
 
       <div className="flex items-center gap-4 relative">
         {token && userData && (
-          <div className="relative">
-            <div className="flex items-center gap-2 cursor-pointer group select-none">
-              <img
-                className="w-9 h-9 rounded-full border-2 border-[#8b5cf6]/40 shadow"
-                src={userData.image}
-                alt="profile"
-              />
-              <img
-                className="w-3 transition-transform group-hover:rotate-180"
-                src={assets.dropdown_icon}
-                alt="dropdown"
-              />
-              <div className="absolute right-0 top-12 w-56 bg-gradient-to-br from-[#f5e8ff] to-[#e0e6ff] text-[#25376a] rounded-xl shadow-lg border border-[#c9e7ff] opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 origin-top-right z-30">
-                <div className="flex flex-col gap-2 py-3 px-4 text-sm font-bold">
-                  <p
-                    onClick={() => navigate("my-profile")}
-                    className="hover:bg-[#8b5cf6]/20 hover:text-[#8b5cf6] px-3 py-2 rounded-lg cursor-pointer transition"
-                  >
-                    👤 My Profile
-                  </p>
-                  <p
-                    onClick={() => navigate("my-appointments")}
-                    className="hover:bg-[#3b82f6]/20 hover:text-[#3b82f6] px-3 py-2 rounded-lg cursor-pointer transition"
-                  >
-                    📅 My Appointments
-                  </p>
-                  <p
-                    onClick={logout}
-                    className="hover:bg-[#ec4899]/10 hover:text-[#ec4899] px-3 py-2 rounded-lg cursor-pointer transition"
-                  >
-                    🚪 Logout
-                  </p>
+          <>
+            <div className="relative">
+              <div className="flex items-center gap-2 cursor-pointer group select-none">
+                <img
+                  className="w-9 h-9 rounded-full border-2 border-[#8b5cf6]/40 shadow"
+                  src={userData.image}
+                  alt="profile"
+                />
+                <img
+                  className="w-3 transition-transform group-hover:rotate-180"
+                  src={assets.dropdown_icon}
+                  alt="dropdown"
+                />
+                <div className="absolute right-0 top-12 w-56 bg-gradient-to-br from-[#f5e8ff] to-[#e0e6ff] text-[#25376a] rounded-xl shadow-lg border border-[#c9e7ff] opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 origin-top-right z-30">
+                  <div className="flex flex-col gap-2 py-3 px-4 text-sm font-bold">
+                    <p
+                      onClick={() => navigate("my-profile")}
+                      className="hover:bg-[#8b5cf6]/20 hover:text-[#8b5cf6] px-3 py-2 rounded-lg cursor-pointer transition"
+                    >
+                      👤 My Profile
+                    </p>
+                    <p
+                      onClick={() => navigate("my-appointments")}
+                      className="hover:bg-[#3b82f6]/20 hover:text-[#3b82f6] px-3 py-2 rounded-lg transition cursor-pointer"
+                    >
+                      📅 My Appointments
+                    </p>
+                    <p
+                      onClick={logout}
+                      className="hover:bg-[#ec4899]/10 hover:text-[#ec4899] px-3 py-2 rounded-lg transition cursor-pointer"
+                    >
+                      🚪 Logout
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            <button
+              onClick={logout}
+              className="ml-4 bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-md font-semibold transition cursor-pointer"
+              title="Logout"
+            >
+              Logout
+            </button>
+          </>
         )}
-        <img
-          onClick={() => setShowMenu(true)}
-          className="w-7 md:hidden cursor-pointer invert brightness-0"
-          src={assets.menu_icon}
-          alt="menu"
-        />
+        {!token && (
+          <img
+            onClick={() => setShowMenu(true)}
+            className="w-7 md:hidden cursor-pointer invert brightness-0"
+            src={assets.menu_icon}
+            alt="menu"
+          />
+        )}
       </div>
 
       {/* Mobile Menu */}
@@ -157,7 +168,7 @@ const Navbar = () => {
                 setShowMenu(false);
                 navigate("/login");
               }}
-              className="bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] text-white px-6 py-2 rounded-full font-bold mt-3 hover:from-[#2563eb] hover:to-[#7c3aed] transition-all duration-300 w-full text-center shadow"
+              className="bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] text-white px-6 py-2 rounded-full font-bold mt-3 hover:from-[#2563eb] hover:to-[#7c3aed] transition-all duration-300 w-full text-center shadow cursor-pointer"
             >
               Create Account
             </button>
@@ -169,6 +180,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
 
 
