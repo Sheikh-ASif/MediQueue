@@ -100,14 +100,22 @@ const DashboardLayout = () => {
                       className="flex justify-between items-center px-4 py-3 hover:bg-blue-50 cursor-pointer transition"
                     >
                       <div>
-                        <p className="text-gray-800 font-semibold">{doc.name}</p>
-                        <p className="text-xs text-gray-500">{doc.speciality}</p>
+                        <p className="text-gray-800 font-semibold">
+                          {doc.name}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          {doc.speciality}
+                        </p>
                       </div>
-                      <span className="text-blue-500 text-sm font-semibold">Book →</span>
+                      <span className="text-blue-500 text-sm font-semibold">
+                        Book →
+                      </span>
                     </div>
                   ))
                 ) : (
-                  <div className="px-4 py-3 text-gray-500 text-sm">No doctors or specialities found.</div>
+                  <div className="px-4 py-3 text-gray-500 text-sm">
+                    No doctors or specialities found.
+                  </div>
                 )}
               </div>
             )}
@@ -143,9 +151,6 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
-
-
-
 
 // import React, { useState } from "react";
 // import { Link, Outlet, useNavigate } from "react-router-dom";
