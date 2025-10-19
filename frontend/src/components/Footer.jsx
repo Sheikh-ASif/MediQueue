@@ -23,7 +23,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="text-[#858ebf] text-sm mb-5">
-            A secure and efficient platform for healthcare appointment scheduling, patient management, and seamless medical team communication.
+            A secure and efficient platform for healthcare appointment
+            scheduling, patient management, and seamless medical team
+            communication.
           </div>
           <ul className="text-[#9ca9d9] text-sm space-y-2">
             <li className="flex items-center gap-2">
@@ -53,22 +55,34 @@ const Footer = () => {
           </div>
           <ul className="flex flex-col gap-3 text-[#858ebf] font-medium">
             <li>
-              <a href="/" className="hover:text-[#7a5cff] hover:underline transition">
+              <a
+                href="/"
+                className="hover:text-[#7a5cff] hover:underline transition"
+              >
                 Home
               </a>
             </li>
             <li>
-              <a href="/login" className="hover:text-[#7a5cff] hover:underline transition">
+              <a
+                href="/login"
+                className="hover:text-[#7a5cff] hover:underline transition"
+              >
                 Login
               </a>
             </li>
             <li>
-              <a href="/signup" className="hover:text-[#7a5cff] hover:underline transition">
+              <a
+                href="/signup"
+                className="hover:text-[#7a5cff] hover:underline transition"
+              >
                 Sign Up
               </a>
             </li>
             <li>
-              <a href="/about" className="hover:text-[#7a5cff] hover:underline transition">
+              <a
+                href="/about"
+                className="hover:text-[#7a5cff] hover:underline transition"
+              >
                 About Us
               </a>
             </li>
@@ -119,7 +133,8 @@ const Footer = () => {
       <div className="text-center mt-6 text-xs text-[#7a5cff] font-semibold pb-4 flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center max-w-7xl mx-auto px-8">
         <div>© {new Date().getFullYear()} MediQueue. All rights reserved.</div>
         <div>
-          Crafted with <span className="text-pink-400">♥</span> for patients and healthcare professionals
+          Crafted with <span className="text-pink-400">♥</span> for patients and
+          healthcare professionals
         </div>
       </div>
     </footer>
@@ -127,8 +142,6 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
 
 // import React from "react";
 // import { assets } from "../assets/assets";
