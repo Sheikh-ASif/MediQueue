@@ -181,9 +181,6 @@ const Navbar = () => {
 
 export default Navbar;
 
-
-
-
 // import React, { useContext, useState } from "react";
 // import { assets } from "../assets/assets";
 // import { NavLink, useNavigate } from "react-router-dom";
