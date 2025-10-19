@@ -344,32 +344,31 @@ const HeroSection = () => {
 
       {/* SECTION 2-3: FEATURES */}
       <section className="w-full min-h-[480px] flex flex-col py-16 bg-gradient-to-r from-[#f4effc] via-[#ebf2ff] to-[#e3f9fe] shadow-inner m-0">
-  <div className="text-center mb-12">
-    <span className="inline-block px-6 py-2 mb-5 bg-purple-100 text-purple-600 font-semibold rounded-full">
-      Key Features of Mediqueue
-    </span>
-    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-      Smart Tools for Modern Healthcare
-    </h2>
-    <p className="text-gray-600 mt-2 text-lg max-w-2xl mx-auto">
-      Designed to make your experience easy, secure, and connected—for
-      patients, doctors, and families.
-    </p>
-  </div>
-  <div className="flex flex-wrap items-center justify-center gap-8">
-    {featureCards.map((card) => (
-      <div
-        key={card.title}
-        className={`feature-card-pro flex flex-col items-center text-center w-64 p-8 rounded-2xl ${universalCardGradient} text-[#32364b] shadow-xl border-2 border-white/50 transition-all duration-300 cursor-pointer m-0`}
-      >
-        <span className="text-4xl mb-2">{card.icon}</span>
-        <span className="text-xl font-extrabold mb-1">{card.title}</span>
-        <span className="text-base opacity-90">{card.desc}</span>
-      </div>
-    ))}
-  </div>
-</section>
-
+        <div className="text-center mb-12">
+          <span className="inline-block px-6 py-2 mb-5 bg-purple-100 text-purple-600 font-semibold rounded-full">
+            Key Features of Mediqueue
+          </span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+            Smart Tools for Modern Healthcare
+          </h2>
+          <p className="text-gray-600 mt-2 text-lg max-w-2xl mx-auto">
+            Designed to make your experience easy, secure, and connected—for
+            patients, doctors, and families.
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-8">
+          {featureCards.map((card) => (
+            <div
+              key={card.title}
+              className={`feature-card-pro flex flex-col items-center text-center w-64 p-8 rounded-2xl ${universalCardGradient} text-[#32364b] shadow-xl border-2 border-white/50 transition-all duration-300 cursor-pointer m-0`}
+            >
+              <span className="text-4xl mb-2">{card.icon}</span>
+              <span className="text-xl font-extrabold mb-1">{card.title}</span>
+              <span className="text-base opacity-90">{card.desc}</span>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* SECTION: HOW IT WORKS */}
       <section className="w-full min-h-[400px] bg-white py-12 rounded-none shadow-xl m-0 flex flex-col">
