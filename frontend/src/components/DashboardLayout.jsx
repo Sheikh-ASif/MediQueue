@@ -3,6 +3,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Home, User, Calendar, Stethoscope, Bell, Search } from "lucide-react";
 import { assets } from "../assets/assets";
 
+
 // Example doctors data (replace with backend fetch if needed)
 const doctors = [
   { _id: 1, name: "Dr. Sneha Nair", speciality: "Neurologist" },
@@ -132,12 +133,13 @@ const DashboardLayout = () => {
               <Bell size={24} />
             </button>
 
-            <img
+            {/* <img
               src={assets.profile_pic}
               alt="User profile"
               className="w-10 h-10 rounded-full border cursor-pointer"
               title="User Profile"
-            />
+            /> */}
+            
           </div>
         </header>
 
