@@ -3,10 +3,13 @@
 MediQueue is a web-based platform for clinics and hospitals focusing on real-time queue and appointment management. The admin panel offers staff an intuitive dashboard to manage doctors, patients, and appointments, ensuring smooth patient flow and improved efficiency. Built with React, Vite, and Tailwind CSS, MediQueue delivers a fast, modern, and responsive user experience.
 
 # ✨ Highlights
-🔒 Authentication for multiple roles: Admin, Doctor, User
-⏱ Efficient patient queue and appointment management
-📊 Structured models for doctors, users, and appointments
-🚀 Built for integration with the React/Vite frontend
+- 🔒 Authentication for multiple roles: Admin, Doctor, User
+
+- ⏱ Efficient patient queue and appointment management
+
+- 📊 Structured models for doctors, users, and appointments
+
+- 🚀 Built for integration with the React/Vite frontend
 
 # 🚀 Technology Stack
 # Core Technologies
