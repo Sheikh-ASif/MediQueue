@@ -125,13 +125,13 @@ const HeroSection = () => {
           <span className="px-6 py-2 bg-white/70 text-[#475da9] font-semibold text-base border border-white/80 rounded-lg mb-5 shadow">
             🏥 Modern, Trusted, 24/7 Medical Care
           </span>
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-3 text-right max-w-lg drop-shadow bg-gradient-to-r from-[#4871ff] via-[#9f6ae4] to-[#fb5baa] bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-3 text-left max-w-lg drop-shadow bg-gradient-to-r from-[#4871ff] via-[#9f6ae4] to-[#fb5baa] bg-clip-text text-transparent">
             Health Management for the{" "}
             <span className="bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#ec4899] bg-clip-text text-transparent">
               Modern Patient
             </span>
           </h1>
-          <p className="text-[#4e5d77] text-lg mt-2 mb-4 max-w-lg leading-normal text-right font-medium">
+          <p className="text-[#4e5d77] text-lg mt-2 mb-4 max-w-lg leading-normal text-left font-medium">
             Experience seamless medical care with instant doctor bookings, smart
             reminders, and secure records—all in one place.
             <span className="block text-[#576ff7] font-semibold mt-2">
