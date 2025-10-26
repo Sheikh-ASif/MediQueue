@@ -32,7 +32,7 @@ const Contact = () => {
         {/* Contact Image */}
         <img
           className="w-full md:max-w-[400px] rounded-3xl border-4 border-[#e0e6ff] shadow-xl hover:scale-105 transition-transform duration-500"
-          src={assets.contact_image}
+          src={assets.contact_us1}
           alt="Contact MediQueue"
         />
 
