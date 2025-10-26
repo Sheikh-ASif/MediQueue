@@ -3,7 +3,9 @@ import { assets } from "../assets/assets";
 
 const About = () => {
   return (
-    <div className="px-6 md:px-16 pt-25 lg:px-32 pb-20 bg-gradient-to-br from-[#f4f7ff] to-[#ebf3fd] text-gray-700 font-sans w-full">
+    // <div className="px-6 md:px-16 pt-25 lg:px-32 pb-20 bg-gradient-to-br from-[#f4f7ff] to-[#ebf3fd] text-gray-700 font-sans w-full">
+    <div className="pt-25 pb-20 bg-gradient-to-br from-[#f4f7ff] to-[#ebf3fd] text-gray-700 font-sans w-full">
+
       {/* --- ABOUT HEADER --- */}
       <div className="text-center mb-2">
         <h1 className="text-4xl font-extrabold tracking-wide bg-gradient-to-r from-[#7a5cff] via-[#339cf7] to-[#33cef3] bg-clip-text text-transparent drop-shadow">
@@ -13,12 +15,12 @@ const About = () => {
       </div>
       {/* --- ABOUT SECTION --- */}
       <div className="mt-16 flex flex-col md:flex-row gap-14 lg:gap-24 items-center max-w-7xl mx-auto">
-        <img
-          className="w-full md:max-w-[440px] rounded-3xl shadow-2xl border-4 border-[#e0e6ff] hover:scale-105 transition-transform duration-600"
-          src={assets.about_image}
-          alt="About MediQueue"
-          loading="lazy"
-        />
+<img
+  className="w-[520px] h-[340px] rounded-3xl shadow-2xl border-4 border-[#e0e6ff] object-cover hover:scale-105 transition-transform duration-600"
+  src={assets.about_image1}
+  alt="About MediQueue"
+  loading="lazy"
+/>
         <div className="space-y-7 md:w-2/3 text-center md:text-left text-lg leading-relaxed tracking-wide text-[#293255]">
           <p>
             MediQueue is committed to redefining excellence in healthcare technology. With every innovation, we bring you a smarter, smoother, and more human way to manage your health.
