@@ -356,11 +356,16 @@ const HeroSection = () => {
             patients, doctors, and families.
           </p>
         </div>
+
         <div className="flex flex-wrap items-center justify-center gap-8">
           {featureCards.map((card) => (
             <div
               key={card.title}
-              className={`feature-card-pro flex flex-col items-center text-center w-64 p-8 rounded-2xl ${universalCardGradient} text-[#32364b] shadow-xl border-2 border-white/50 transition-all duration-300 cursor-pointer m-0`}
+              className={`feature-card-pro flex flex-col items-center text-center w-64 p-8 rounded-2xl bg-[#f4f6fc] text-[#32364b] shadow-xl border-2 border-white/50 cursor-default m-0`}
+              style={{
+                transition: "none",
+                background: "#f4f6fc", // solid color background (no gradient)
+              }}
             >
               <span className="text-4xl mb-2">{card.icon}</span>
               <span className="text-xl font-extrabold mb-1">{card.title}</span>
@@ -384,11 +389,12 @@ const HeroSection = () => {
             Our process makes care fast, secure and efficient for everyone.
           </p>
         </div>
+
         <div className="flex flex-wrap md:flex-nowrap items-center justify-center gap-8 mt-8">
           {steps.map((step) => (
             <div
               key={step.title}
-              className="flex flex-col items-center w-60 p-8 rounded-xl bg-gradient-to-tr from-purple-50 to-blue-50 border shadow-md hover:scale-105 hover:shadow-lg transition-all"
+              className="flex flex-col items-center w-60 p-8 rounded-xl bg-[#f4f6fc] shadow-lg text-center cursor-pointer transform transition-transform duration-300 hover:scale-105"
             >
               <span className="text-[#6e49ed] text-3xl mb-2 font-bold">
                 {step.icon}
