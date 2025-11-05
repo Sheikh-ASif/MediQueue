@@ -4,48 +4,51 @@ import { NavLink } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { DoctorContext } from "../context/DoctorContext";
 
-const activeGradient = "bg-gradient-to-r from-yellow-300 to-blue-400";
-const linkGradient =
-  "hover:bg-gradient-to-r hover:from-[#f3f4f6] hover:via-[#e0e7ff] hover:to-[#f8fafc]";
-
 const Sidebar = () => {
   const { atoken } = useContext(AdminContext);
   const { dtoken } = useContext(DoctorContext);
 
+  const baseLinkStyle =
+    "flex items-center gap-3 py-3 px-4 md:px-7 rounded-lg transition-all duration-200 group";
+  const iconStyle =
+    "w-5 h-5 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-transform";
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-[#f5faff] border-r border-indigo-100 shadow-md">
+    <div className="min-h-screen bg-gradient-to-b from-white to-[#f8fafc] border-r border-gray-200 shadow-sm flex flex-col">
+      {/* Logo */}
+      <div className="text-2xl font-extrabold text-blue-600 px-6 mt-8 mb-6">
+        MediQueue
+      </div>
+
+      {/* Admin Sidebar */}
       {atoken && (
-        <ul className="mt-8 space-y-2 px-3 text-[1rem] font-medium">
+        <ul className="space-y-1 px-2 text-[1rem] font-medium text-gray-700">
           <NavLink
             to="/admin-dashboard"
             className={({ isActive }) =>
-              `flex items-center gap-3 py-3 px-4 md:px-7 rounded-xl shadow-sm transition-all duration-300 group ${
+              `${baseLinkStyle} ${
                 isActive
-                  ? `${activeGradient} border-l-4 border-yellow-400 text-yellow-700 font-bold`
-                  : `${linkGradient} text-gray-700`
+                  ? "bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-400 shadow-sm"
+                  : "hover:bg-gray-50 hover:translate-x-[2px]"
               }`
             }
           >
-            <img
-              className="w-5 h-5 opacity-80 group-hover:scale-110 transition-transform"
-              src={assets.home_icon}
-              alt="Dashboard"
-            />
+            <img className={iconStyle} src={assets.home_icon} alt="Dashboard" />
             <span>Dashboard</span>
           </NavLink>
 
           <NavLink
             to="/all-appointments"
             className={({ isActive }) =>
-              `flex items-center gap-3 py-3 px-4 md:px-7 rounded-xl shadow-sm transition-all duration-300 group ${
+              `${baseLinkStyle} ${
                 isActive
-                  ? `${activeGradient} border-l-4 border-blue-400 text-blue-700 font-bold`
-                  : `${linkGradient} text-gray-700`
+                  ? "bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-400 shadow-sm"
+                  : "hover:bg-gray-50 hover:translate-x-[2px]"
               }`
             }
           >
             <img
-              className="w-5 h-5 opacity-80 group-hover:scale-110 transition-transform"
+              className={iconStyle}
               src={assets.appointment_icon}
               alt="Appointments"
             />
@@ -55,17 +58,16 @@ const Sidebar = () => {
           <NavLink
             to="/admin-users"
             className={({ isActive }) =>
-              `flex items-center gap-3 py-3 px-4 md:px-7 rounded-xl shadow-sm transition-all duration-300 group ${
+              `${baseLinkStyle} ${
                 isActive
-                  ? `${activeGradient} border-l-4 border-blue-400 text-blue-700 font-bold`
-                  : `${linkGradient} text-gray-700`
+                  ? "bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-400 shadow-sm"
+                  : "hover:bg-gray-50 hover:translate-x-[2px]"
               }`
             }
           >
-            {/* same as Appointments */}
             <img
-              className="w-5 h-5 opacity-80 group-hover:scale-110 transition-transform"
-              src={assets.people_icon} 
+              className={iconStyle}
+              src={assets.people_icon}
               alt="Users"
             />
             <span>Users</span>
@@ -74,15 +76,15 @@ const Sidebar = () => {
           <NavLink
             to="/doctor-list"
             className={({ isActive }) =>
-              `flex items-center gap-3 py-3 px-4 md:px-7 rounded-xl shadow-sm transition-all duration-300 group ${
+              `${baseLinkStyle} ${
                 isActive
-                  ? `${activeGradient} border-l-4 border-red-400 text-red-600 font-bold`
-                  : `${linkGradient} text-gray-700`
+                  ? "bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-400 shadow-sm"
+                  : "hover:bg-gray-50 hover:translate-x-[2px]"
               }`
             }
           >
             <img
-              className="w-5 h-5 opacity-80 group-hover:scale-110 transition-transform"
+              className={iconStyle}
               src={assets.people_icon}
               alt="Doctors List"
             />
@@ -92,15 +94,15 @@ const Sidebar = () => {
           <NavLink
             to="/add-doctor"
             className={({ isActive }) =>
-              `flex items-center gap-3 py-3 px-4 md:px-7 rounded-xl shadow-sm transition-all duration-300 group ${
+              `${baseLinkStyle} ${
                 isActive
-                  ? `${activeGradient} border-l-4 border-green-400 text-green-700 font-bold`
-                  : `${linkGradient} text-gray-700`
+                  ? "bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-400 shadow-sm"
+                  : "hover:bg-gray-50 hover:translate-x-[2px]"
               }`
             }
           >
             <img
-              className="w-5 h-5 opacity-80 group-hover:scale-110 transition-transform"
+              className={iconStyle}
               src={assets.add_icon}
               alt="Add Doctor"
             />
@@ -109,38 +111,35 @@ const Sidebar = () => {
         </ul>
       )}
 
+      {/* Doctor Sidebar */}
       {dtoken && (
-        <ul className="mt-8 space-y-2 px-3 text-[1rem] font-medium">
+        <ul className="space-y-1 px-2 text-[1rem] font-medium text-gray-700">
           <NavLink
             to="/doctor-dashboard"
             className={({ isActive }) =>
-              `flex items-center gap-3 py-3 px-4 md:px-7 rounded-xl shadow-sm transition-all duration-300 group ${
+              `${baseLinkStyle} ${
                 isActive
-                  ? `${activeGradient} border-l-4 border-yellow-400 text-yellow-700 font-bold`
-                  : `${linkGradient} text-gray-700`
+                  ? "bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-400 shadow-sm"
+                  : "hover:bg-gray-50 hover:translate-x-[2px]"
               }`
             }
           >
-            <img
-              className="w-5 h-5 opacity-80 group-hover:scale-110 transition-transform"
-              src={assets.home_icon}
-              alt="Dashboard"
-            />
+            <img className={iconStyle} src={assets.home_icon} alt="Dashboard" />
             <span>Dashboard</span>
           </NavLink>
 
           <NavLink
             to="/doctor-appointments"
             className={({ isActive }) =>
-              `flex items-center gap-3 py-3 px-4 md:px-7 rounded-xl shadow-sm transition-all duration-300 group ${
+              `${baseLinkStyle} ${
                 isActive
-                  ? `${activeGradient} border-l-4 border-blue-400 text-blue-700 font-bold`
-                  : `${linkGradient} text-gray-700`
+                  ? "bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-400 shadow-sm"
+                  : "hover:bg-gray-50 hover:translate-x-[2px]"
               }`
             }
           >
             <img
-              className="w-5 h-5 opacity-80 group-hover:scale-110 transition-transform"
+              className={iconStyle}
               src={assets.appointment_icon}
               alt="Appointments"
             />
@@ -150,15 +149,15 @@ const Sidebar = () => {
           <NavLink
             to="/doctor-profile"
             className={({ isActive }) =>
-              `flex items-center gap-3 py-3 px-4 md:px-7 rounded-xl shadow-sm transition-all duration-300 group ${
+              `${baseLinkStyle} ${
                 isActive
-                  ? `${activeGradient} border-l-4 border-pink-400 text-pink-600 font-bold`
-                  : `${linkGradient} text-gray-700`
+                  ? "bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-400 shadow-sm"
+                  : "hover:bg-gray-50 hover:translate-x-[2px]"
               }`
             }
           >
             <img
-              className="w-5 h-5 opacity-80 group-hover:scale-110 transition-transform"
+              className={iconStyle}
               src={assets.people_icon}
               alt="Profile"
             />
@@ -171,6 +170,7 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
 
 
 
