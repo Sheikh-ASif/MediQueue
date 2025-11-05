@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { assets } from "../assets/assets";
 
+// ✅ Static data (moved outside to prevent re-creation)
+const cyclingTexts = ["Trusted Doctors", "Specialists", "Care Experts"];
 const doctorsList = [
   "Dr. Sneha Nair - Neurologist",
   "Dr. Rajesh Kumar - General Physician",
@@ -9,11 +11,8 @@ const doctorsList = [
 ];
 
 const Header = () => {
-  // State for cycling dynamic headline text
-  const cyclingTexts = ["Trusted Doctors", "Specialists", "Care Experts"];
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
-  // Cycle the headline text every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTextIndex((prev) =>
@@ -21,44 +20,52 @@ const Header = () => {
       );
     }, 3000);
     return () => clearInterval(interval);
-  }, [cyclingTexts.length]);
+  }, []);
 
-  // Search input and results state
+  
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchInput(value);
-    if (value.trim() === "") {
-      setSearchResults([]);
-      return;
-    }
-    const filtered = doctorsList.filter((doctor) =>
-      doctor.toLowerCase().includes(value.toLowerCase())
-    );
-    setSearchResults(filtered);
+
+    clearTimeout(window.searchTimeout);
+    window.searchTimeout = setTimeout(() => {
+      if (value.trim() === "") {
+        setSearchResults([]);
+        return;
+      }
+      const filtered = doctorsList.filter((doctor) =>
+        doctor.toLowerCase().includes(value.toLowerCase())
+      );
+      setSearchResults(filtered);
+    }, 300);
   };
 
-  // Dummy function for booking button tooltip
-  const [showTooltip, setShowTooltip] = useState(false);
+  const clearSearch = () => {
+    setSearchInput("");
+    setSearchResults([]);
+  };
 
-  // Toast notification state for live chat
+  
+  const [showTooltip, setShowTooltip] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
   const handleLiveChatClick = () => {
     setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
+    setTimeout(() => setShowToast(false), 5000);
   };
 
   return (
-    <div className="relative w-full min-h-[630px] flex flex-col md:flex-row flex-wrap bg-gradient-to-r from-[#e9fafe] via-[#e4ebfc] to-[#e3f9fe] px-8 md:px-16 lg:px-24 pt-50 pb-10 md:pb-20 shadow-inner">
-      {/* Left Side */}
-      <div className="md:w-1/2 flex flex-col items-start justify-center gap-8 relative">
+    <div className="relative w-full min-h-[630px] flex flex-col md:flex-row flex-wrap bg-gradient-to-r from-[#e9fafe] via-[#e4ebfc] to-[#e3f9fe] px-8 md:px-16 lg:px-24 pt-40 pb-16 shadow-inner">
+      
+      <div className="md:w-1/2 flex flex-col items-start justify-center space-y-8 relative">
+      
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center md:text-left bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#ec4899] bg-clip-text text-transparent leading-tight drop-shadow-lg">
-          Book Appointments <br /> with{" "}
+          Book Appointments <br />
+          with{" "}
           <span
             key={cyclingTexts[currentTextIndex]}
             className="inline-block transition-opacity duration-1000"
@@ -67,29 +74,37 @@ const Header = () => {
           </span>
         </h1>
 
-        {/* Group profile image */}
-        <div className="flex items-center gap-6">
+       
+        <div className="flex flex-col sm:flex-row items-center gap-6">
           <img
             src={assets.group_profiles}
             alt="group of doctors"
-            className="w-40 h-auto rounded-lg shadow-lg cursor-pointer"
+            className="w-40 h-auto rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
             title={doctorsList.join(", ")}
           />
-          <p className="text-lg text-[#4e5d77] max-w-md">
-            Your health matters. Browse our trusted doctors and schedule
-            appointments effortlessly.
+          <p className="text-lg text-[#4e5d77] max-w-md text-center sm:text-left">
+            Your health matters. Browse trusted specialists and book your
+            appointment effortlessly — anytime, anywhere.
           </p>
         </div>
 
-        {/* Doctor Search Input */}
-        <div className="w-full max-w-md mt-2 mb-6">
+     
+        <div className="w-full max-w-md relative">
           <input
             type="text"
             placeholder="Search doctors, specialties..."
             value={searchInput}
             onChange={handleSearchChange}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm transition"
           />
+          {searchInput && (
+            <button
+              onClick={clearSearch}
+              className="absolute right-3 top-3 text-gray-500 hover:text-gray-700 text-lg"
+            >
+              ×
+            </button>
+          )}
           {searchResults.length > 0 && (
             <ul className="mt-1 max-h-48 overflow-auto border border-gray-300 rounded-lg bg-white shadow-md text-gray-700 text-sm">
               {searchResults.map((result, idx) => (
@@ -108,12 +123,12 @@ const Header = () => {
           )}
         </div>
 
-        {/* Book Appointment Button with animated pulse and tooltip */}
+        
         <a
           href="#speciality"
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
-          className="inline-flex items-center gap-3 bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#ec4899] text-white text-lg font-semibold px-10 py-4 rounded-full shadow-lg hover:brightness-110 transition relative animate-pulse"
+          className="inline-flex items-center gap-3 bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#ec4899] text-white text-lg font-semibold px-10 py-4 rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 relative"
         >
           Book Appointment
           <img className="w-5" src={assets.arrow_icon} alt="arrow" />
@@ -125,7 +140,7 @@ const Header = () => {
         </a>
       </div>
 
-      {/* Right Side */}
+      
       <div className="md:w-1/2 flex items-center justify-center mt-12 md:mt-0 relative">
         <img
           className="w-full max-w-lg rounded-3xl shadow-2xl object-contain hover:scale-105 transition-transform duration-500"
@@ -133,10 +148,12 @@ const Header = () => {
           alt="doctor"
         />
 
-        {/* Floating Live Chat Bubble */}
+       
         <button
           onClick={handleLiveChatClick}
-          className="fixed bottom-8 right-8 z-50 flex items-center justify-center w-14 h-14 bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 transition"
+          className={`fixed right-8 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 ${
+            showToast ? "bottom-24 bg-blue-700" : "bottom-8 bg-blue-600"
+          }`}
           aria-label="Live chat"
           title="Live Chat Support"
         >
@@ -156,20 +173,27 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Toast Notification */}
+     
       {showToast && (
-        <div className="fixed bottom-24 right-8 z-50 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg animate-fadeInOut">
-          Live chat support is currently offline. Please try again later.
+        <div className="fixed bottom-8 right-28 z-50 bg-blue-600 text-white px-5 py-3 rounded-lg shadow-lg flex items-center gap-3 animate-fadeInOut">
+          <span>💬 Live chat is currently offline. Please try later.</span>
+          <button
+            onClick={() => setShowToast(false)}
+            className="text-white font-bold hover:text-gray-200"
+          >
+            ×
+          </button>
         </div>
       )}
 
+     
       <style>{`
         @keyframes fadeInOut {
           0%, 100% {opacity: 0; transform: translateY(10px);}
           10%, 90% {opacity: 1; transform: translateY(0);}
         }
         .animate-fadeInOut {
-          animation: fadeInOut 3s ease forwards;
+          animation: fadeInOut 5s ease forwards;
         }
       `}</style>
     </div>
@@ -177,6 +201,7 @@ const Header = () => {
 };
 
 export default Header;
+
 
 
 // import React from "react";
