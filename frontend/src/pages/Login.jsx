@@ -112,7 +112,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="mt-2 bg-gradient-to-r from-[#7a5cff] via-[#339cf7] to-[#33cef3] hover:opacity-90 text-white w-full py-3 rounded-full font-bold text-lg transition shadow-lg"
+              className="mt-2 bg-gradient-to-r from-[#7a5cff] via-[#339cf7] to-[#33cef3] hover:opacity-90 text-white w-full py-3 rounded-full font-bold text-lg transition shadow-lg cursor-pointer"
             >
               {state === 'Sign Up' ? "Create Account" : "Login"}
             </button>
