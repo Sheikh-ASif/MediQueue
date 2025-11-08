@@ -13,9 +13,16 @@ const AdminUsersPage = () => {
     const fetchUsers = async () => {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:4000/api/admin/all-patients", {
-          headers: { atoken: localStorage.getItem("atoken") },
-        });
+        // const response = await fetch("http://localhost:4000/api/admin/all-patients", {
+        //   headers: { atoken: localStorage.getItem("atoken") },
+        // });
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/admin/all-patients`,
+          {
+            headers: { atoken: localStorage.getItem("atoken") },
+          }
+        );
+
         const data = await response.json();
         if (data.success) {
           setUsers(data.patients);
@@ -50,9 +57,15 @@ const AdminUsersPage = () => {
   };
 
   if (loading)
-    return <p className="text-center text-lg font-medium text-gray-600 py-10">Loading users...</p>;
+    return (
+      <p className="text-center text-lg font-medium text-gray-600 py-10">
+        Loading users...
+      </p>
+    );
   if (error)
-    return <p className="text-center text-red-600 py-10 font-semibold">{error}</p>;
+    return (
+      <p className="text-center text-red-600 py-10 font-semibold">{error}</p>
+    );
 
   return (
     <div className="px-6 py-10 max-w-7xl mx-auto">
@@ -82,23 +95,32 @@ const AdminUsersPage = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gradient-to-r from-indigo-50 to-indigo-100">
             <tr>
-              {["User", "Email", "Phone", "Gender", "DOB", "Address", "Appointments"].map(
-                (heading) => (
-                  <th
-                    key={heading}
-                    className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider"
-                  >
-                    {heading}
-                  </th>
-                )
-              )}
+              {[
+                "User",
+                "Email",
+                "Phone",
+                "Gender",
+                "DOB",
+                "Address",
+                "Appointments",
+              ].map((heading) => (
+                <th
+                  key={heading}
+                  className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider"
+                >
+                  {heading}
+                </th>
+              ))}
             </tr>
           </thead>
 
           <tbody className="divide-y divide-gray-100 bg-white">
             {filteredUsers.length === 0 ? (
               <tr>
-                <td colSpan={7} className="text-center py-12 text-gray-500 text-lg font-medium">
+                <td
+                  colSpan={7}
+                  className="text-center py-12 text-gray-500 text-lg font-medium"
+                >
                   No users found.
                 </td>
               </tr>
@@ -113,7 +135,9 @@ const AdminUsersPage = () => {
                         alt="User"
                         className="w-12 h-12 rounded-full border-2 border-indigo-300 shadow-sm"
                       />
-                      <p className="font-semibold text-gray-800 text-lg">{user.name}</p>
+                      <p className="font-semibold text-gray-800 text-lg">
+                        {user.name}
+                      </p>
                     </td>
                     <td className="px-6 py-4 text-gray-700">{user.email}</td>
                     <td className="px-6 py-4 text-gray-700">{user.phone}</td>
@@ -130,10 +154,14 @@ const AdminUsersPage = () => {
                         {user.gender || "N/A"}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-gray-700">{user.dob || "N/A"}</td>
+                    <td className="px-6 py-4 text-gray-700">
+                      {user.dob || "N/A"}
+                    </td>
                     <td className="px-6 py-4 text-gray-700">
                       {user.address
-                        ? `${user.address.line1 || ""}, ${user.address.line2 || ""}`
+                        ? `${user.address.line1 || ""}, ${
+                            user.address.line2 || ""
+                          }`
                         : "N/A"}
                     </td>
                     <td className="px-6 py-4 text-center">
@@ -145,8 +173,10 @@ const AdminUsersPage = () => {
                             : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200"
                         }`}
                       >
-                        {expandedUserId === (user._id || user.id) ? "Hide" : "Show"} (
-                        {user.appointments?.length || 0})
+                        {expandedUserId === (user._id || user.id)
+                          ? "Hide"
+                          : "Show"}{" "}
+                        ({user.appointments?.length || 0})
                       </button>
                     </td>
                   </tr>
