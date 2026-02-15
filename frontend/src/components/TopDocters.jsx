@@ -58,7 +58,7 @@ const TopDocters = () => {
 
                 {/* Experience Badge */}
                 <div className="text-xs font-semibold rounded-full px-3 py-1 bg-blue-100 text-blue-700">
-                  {item.experience} Years
+                  {item.experience} of exp
                 </div>
               </div>
 
