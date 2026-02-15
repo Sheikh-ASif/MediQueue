@@ -177,6 +177,10 @@ const Appointment = () => {
               {docInfo.about}
             </p>
 
+            <p className="mt-4 text-gray-500 leading-relaxed">
+              {docInfo.experience} of experience
+            </p>
+
             <div className="mt-6 text-lg font-semibold text-blue-600">
               Consultation Fee: {currencySymbol}
               {docInfo.fees}
