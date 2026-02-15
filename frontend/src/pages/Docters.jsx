@@ -32,22 +32,24 @@ const Docters = () => {
   ];
 
   return (
-    <div className="py-6 px-6 bg-gradient-to-b from-white via-[#f0f4ff] to-white min-h-screen pt-20 pb-5">
+    <div className="py-6 px-6 bg-gradient-to-b from-white via-[#f0f4ff] to-white min-h-screen pt-20 pb-8">
+      
       {/* Page Heading */}
       <h2 className="text-3xl font-bold text-indigo-900 mb-1 text-center md:text-left">
         Explore Trusted Medical Specialties
       </h2>
-      <p className="text-indigo-700 text-sm md:text-base mb-6 text-center md:text-left max-w-xl">
+      <p className="text-indigo-700 text-sm md:text-base mb-8 text-center md:text-left max-w-xl">
         Choose from a wide range of experienced doctors
       </p>
 
-      <div className="flex flex-col sm:flex-row items-start gap-6">
-        {/* Filter Button for Mobile */}
+      <div className="flex flex-col sm:flex-row items-start gap-8">
+        
+        {/* Mobile Filter Toggle */}
         <button
           className={`py-2 px-4 rounded-lg text-sm font-medium transition-all sm:hidden shadow-sm ${
             showFilter
               ? "bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white shadow-lg"
-              : "bg-white text-indigo-700"
+              : "bg-white text-indigo-700 border border-indigo-200"
           }`}
           onClick={() => setShowFilter((prev) => !prev)}
         >
@@ -68,7 +70,7 @@ const Docters = () => {
                   ? navigate("/docters")
                   : navigate(`/docters/${spec.name}`)
               }
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg border cursor-pointer transition-all duration-200 ${
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200 ${
                 speciality === spec.name
                   ? "bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white shadow-md border-transparent"
                   : "bg-white text-indigo-700 border-indigo-200 hover:bg-indigo-100 hover:text-indigo-900"
@@ -81,57 +83,52 @@ const Docters = () => {
         </div>
 
         {/* Doctors Grid */}
-        <div className="w-full grid [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))] gap-6">
+        <div className="w-full grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-8">
           {filterDoc.map((item, index) => (
             <div
-              onClick={() => navigate(`/appointment/${item._id}`)}
               key={index}
-              className="bg-white border border-indigo-200 rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-1 transition-transform duration-300"
+              onClick={() => navigate(`/appointment/${item._id}`)}
+              className="bg-white border border-indigo-100 rounded-3xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
+              {/* Doctor Image */}
               <img
-                className="w-full h-48 object-cover object-top bg-indigo-50"
+                className="w-full h-52 object-cover object-top bg-indigo-50"
                 src={item.image}
                 alt={item.name}
               />
-              <div className="p-5 space-y-2">
-                
-                {/* Availability + Experience */}
-                <div className="flex items-center gap-3">
-                  {/* Availability */}
-                  <div
-                    className={`inline-flex items-center gap-2 text-xs font-semibold rounded-full px-3 py-1 ${
-                      item.available
-                        ? "bg-green-100 text-green-700"
-                        : "bg-red-100 text-red-600"
-                    }`}
-                  >
-                    <span
-                      className={`w-2 h-2 rounded-full ${
-                        item.available ? "bg-green-600" : "bg-red-500"
-                      }`}
-                    />
-                    {item.available ? "Available" : "Not Available"}
-                  </div>
 
-                  {/* Experience Badge */}
-                  <div className="text-xs font-semibold rounded-full px-3 py-1 bg-blue-100 text-blue-700">
-                    {item.experience} Years
-                  </div>
+              <div className="p-6 space-y-4">
+                
+                {/* Availability Badge */}
+                <div
+                  className={`inline-flex items-center gap-2 text-xs font-medium rounded-full px-3 py-1 ${
+                    item.available
+                      ? "bg-green-100 text-green-700"
+                      : "bg-red-100 text-red-600"
+                  }`}
+                >
+                  <span
+                    className={`w-2 h-2 rounded-full ${
+                      item.available ? "bg-green-600" : "bg-red-500"
+                    }`}
+                  />
+                  {item.available ? "Available" : "Not Available"}
                 </div>
 
-                {/* Name */}
-                <p className="text-indigo-900 text-lg font-semibold">
-                  {item.name}
-                </p>
+                {/* Doctor Info */}
+                <div>
+                  <p className="text-indigo-900 text-lg font-semibold">
+                    {item.name}
+                  </p>
 
-                {/* Speciality */}
-                <p className="text-indigo-700 text-sm">
-                  {item.speciality}
-                </p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {item.speciality} • {item.experience} of experience
+                  </p>
+                </div>
 
-                {/* CTA */}
+                {/* CTA Button */}
                 <button
-                  className="mt-3 w-full py-2 rounded-lg bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#fb7185] text-white text-sm font-medium hover:brightness-110 transition"
+                  className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#fb7185] text-white text-sm font-medium hover:brightness-110 transition"
                   onClick={(e) => {
                     e.stopPropagation();
                     navigate(`/appointment/${item._id}`);
@@ -149,9 +146,6 @@ const Docters = () => {
 };
 
 export default Docters;
-
-
-
 
 
 
@@ -295,4 +289,3 @@ export default Docters;
 // };
 
 // export default Docters;
-
