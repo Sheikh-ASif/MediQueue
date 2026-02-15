@@ -3,8 +3,11 @@ import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer
+  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
+  PieChart, Pie, Cell, Legend
 } from "recharts"
+
+const COLORS = ["#4F46E5", "#16A34A", "#DC2626", "#F59E0B", "#06B6D4", "#9333EA"]
 
 const MyAppointments = () => {
   const { backendUrl, token, getDoctorsData } = useContext(AppContext)
@@ -28,11 +31,10 @@ const MyAppointments = () => {
 
       if (data.success) {
         setAppointments(data.appointments)
-        // decode token to get user id
+
         const decoded = JSON.parse(atob(token.split('.')[1]))
         setMyId(decoded.id)
 
-        // calculate waiting time for the next upcoming appointment
         if (data.appointments.length > 0) {
           const sorted = [...data.appointments].sort((a, b) => {
             const t1 = new Date(`${a.slotDate.replace(/_/g, "/")} ${a.slotTime}`)
@@ -79,12 +81,32 @@ const MyAppointments = () => {
     }
   }, [token])
 
-  // Chart Data Builder
+  // -------- BAR CHART DATA --------
   const chartData = appointments.map((apt, index) => ({
     time: apt.slotTime,
     patient: apt.userData?.name || "Patient " + (index + 1),
     me: apt.userId === myId
   }))
+
+  // -------- PIE CHART DATA (Date-wise) --------
+  const dateWiseData = () => {
+    const grouped = {}
+
+    appointments.forEach((apt) => {
+      const formattedDate = slotDateFormat(apt.slotDate)
+      if (!grouped[formattedDate]) {
+        grouped[formattedDate] = 0
+      }
+      grouped[formattedDate] += 1
+    })
+
+    return Object.keys(grouped).map(date => ({
+      name: date,
+      value: grouped[date]
+    }))
+  }
+
+  const pieData = dateWiseData()
 
   return (
     <div className="px-6 md:px-12 lg:px-20 py-10">
@@ -101,7 +123,7 @@ const MyAppointments = () => {
         </div>
       )}
 
-      {/* Graph Section */}
+      {/* -------- BAR GRAPH -------- */}
       {chartData.length > 0 && (
         <div className="w-full h-64 mb-10">
           <ResponsiveContainer>
@@ -120,7 +142,7 @@ const MyAppointments = () => {
                       y={y}
                       width={width}
                       height={height}
-                      fill={payload.me ? "#f97316" : fill} // orange for my slot
+                      fill={payload.me ? "#f97316" : fill}
                       rx={6}
                     />
                   )
@@ -134,7 +156,33 @@ const MyAppointments = () => {
         </div>
       )}
 
-      {/* Appointment List */}
+      {/* -------- PIE CHART (DATE-WISE) -------- */}
+      {pieData.length > 0 && (
+        <div className="w-full h-80 mb-12">
+          <ResponsiveContainer>
+            <PieChart>
+              <Pie
+                data={pieData}
+                dataKey="value"
+                nameKey="name"
+                outerRadius={120}
+                label
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+          <p className="text-center text-sm mt-2 text-gray-600">
+            Pie chart shows number of appointments per date
+          </p>
+        </div>
+      )}
+
+      {/* -------- APPOINTMENT LIST -------- */}
       {appointments.length === 0 ? (
         <p className="text-center text-gray-500">No appointments yet.</p>
       ) : (
@@ -144,7 +192,6 @@ const MyAppointments = () => {
               key={index}
               className="flex flex-col sm:flex-row gap-6 bg-white shadow-md rounded-xl p-5 border border-gray-100 hover:shadow-lg transition"
             >
-              {/* Doctor Image */}
               <div className="flex-shrink-0">
                 <img
                   className="w-32 h-32 object-cover rounded-lg bg-indigo-50"
@@ -153,7 +200,6 @@ const MyAppointments = () => {
                 />
               </div>
 
-              {/* Appointment Info */}
               <div className="flex-1 text-sm text-gray-600">
                 <p className="text-lg font-semibold text-gray-800">{item.docData.name}</p>
                 <p className="text-blue-600 font-medium">{item.docData.speciality}</p>
@@ -168,7 +214,6 @@ const MyAppointments = () => {
                 </p>
               </div>
 
-              {/* Actions */}
               <div className="flex flex-col gap-3 justify-center sm:items-end">
                 {!item.cancelled && !item.isCompleted && (
                   <span className="px-4 py-2 rounded-full text-sm font-medium bg-yellow-100 text-yellow-700 border border-yellow-300">
@@ -178,7 +223,7 @@ const MyAppointments = () => {
                 {!item.cancelled && !item.isCompleted && (
                   <button
                     onClick={() => cancelAppointment(item._id)}
-                    className=" cursor-pointer text-sm px-6 py-2 rounded-lg border border-red-400 text-red-500 hover:bg-red-500 hover:text-white transition"
+                    className="cursor-pointer text-sm px-6 py-2 rounded-lg border border-red-400 text-red-500 hover:bg-red-500 hover:text-white transition"
                   >
                     Cancel Appointment
                   </button>
@@ -188,7 +233,11 @@ const MyAppointments = () => {
                     Cancelled
                   </button>
                 )}
-                {item.isCompleted && <button className='sm:min-w-48 py-2 border border-green-500 rounded text-green-500'>Completed</button>}
+                {item.isCompleted && (
+                  <button className='sm:min-w-48 py-2 border border-green-500 rounded text-green-500'>
+                    Completed
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -199,4 +248,3 @@ const MyAppointments = () => {
 }
 
 export default MyAppointments
-
