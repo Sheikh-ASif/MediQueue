@@ -33,22 +33,3 @@ const Home = () => {
 
 export default Home;
 
-// import React from 'react'
-// import Header from '../components/Header'
-// import SpecialityMenu from '../components/specialityMenu'
-// import TopDocters from '../components/TopDocters'
-// import Banner from '../components/Banner'
-// // import Appointment from './Appointment'
-
-// const Home = () => {
-//   return (
-//     <div>
-//       <Header />
-//       <SpecialityMenu/>
-//       <TopDocters/>
-//       <Banner/>
-//     </div>
-//   )
-// }
-
-// export default Home
