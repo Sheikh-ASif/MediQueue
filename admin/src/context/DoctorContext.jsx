@@ -1,3 +1,4 @@
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 import { useState } from "react";
 import { createContext } from "react";
 import axios from "axios";
@@ -18,7 +19,8 @@ const DoctorContextProvider = (props) => {
   const getAppointments = async () => {
     try {
       const { data } = await axios.get(
-        backendUrl + "/api/doctor/appointments",
+        // backendUrl + "/api/doctor/appointments",
+        "/api/doctor/appointments",
         { headers: { dtoken } }
       );
       if (data.success) {
@@ -36,7 +38,8 @@ const DoctorContextProvider = (props) => {
   const completeAppointment = async (appointmentId) => {
     try {
       const { data } = await axios.post(
-        backendUrl + "/api/doctor/complete-appointment",
+        // backendUrl + "/api/doctor/complete-appointment",
+        "/api/doctor/complete-appointment",
         { appointmentId },
         { headers: { dtoken } }
       );
@@ -55,7 +58,8 @@ const DoctorContextProvider = (props) => {
   const cancelAppointment = async (appointmentId) => {
     try {
       const { data } = await axios.post(
-        backendUrl + "/api/doctor/cancel-appointment",
+        // backendUrl + "/api/doctor/cancel-appointment",
+        "/api/doctor/cancel-appointment",
         { appointmentId },
         { headers: { dtoken } }
       );
@@ -73,7 +77,8 @@ const DoctorContextProvider = (props) => {
 
   const getDashData = async () => {
     try {
-      const { data } = await axios.get(backendUrl + "/api/doctor/dashboard", {
+      // const { data } = await axios.get(backendUrl + "/api/doctor/dashboard", {
+      const { data } = await axios.get("/api/doctor/dashboard", {
         headers: { dtoken },
       });
       if (data.success) {
@@ -90,7 +95,8 @@ const DoctorContextProvider = (props) => {
 
   const getProfileData = async () => {
     try {
-      const { data } = await axios.get(backendUrl + "/api/doctor/profile", {
+      // const { data } = await axios.get(backendUrl + "/api/doctor/profile", {
+      const { data } = await axios.get("/api/doctor/profile", {
         headers: { dtoken },
       });
       if (data.success) {
