@@ -1,4 +1,259 @@
-🏥 MediQueue - Frontend Application
+# 🏥 MediQueue - Frontend Application
+
+## Overview
+
+MediQueue is a web-based healthcare appointment and queue management system developed using React.js. It allows patients to browse doctors, book appointments, manage their profiles, and view appointment history. The application communicates with a Node.js backend using REST APIs.
+
+> **Note:** This project was originally developed as a React.js web application. The assessment requested a React Native application. Due to time constraints, this submission contains the React.js implementation.
+
+---
+
+# 🚀 Technology Stack
+
+## Core Technologies
+
+- React ^19.1.1
+- Vite ^7.1.5
+- JavaScript (ES6+)
+
+## State Management
+
+- React Context API
+- React Hooks (useState, useEffect, useContext)
+
+## Routing
+
+- React Router DOM ^7.8.2
+
+## Styling
+
+- Tailwind CSS ^3.4.17
+- PostCSS
+- Autoprefixer
+- Lucide React
+- React Icons
+
+## API & Notifications
+
+- Axios
+- React Hot Toast
+
+## Development Tools
+
+- ESLint
+- Vite React Plugin
+
+---
+
+# 📂 Project Structure
+
+```
+frontend/
+│
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── context/
+│   ├── hooks/
+│   ├── pages/
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── package.json
+├── vite.config.js
+├── tailwind.config.js
+├── eslint.config.js
+└── README.md
+```
+
+---
+
+# 🎯 Features
+
+## Patient Features
+
+- User Authentication
+- Browse Doctors
+- Search Doctors
+- Doctor Details
+- Book Appointment
+- View My Appointments
+- Profile Management
+
+## Admin Features
+
+- Admin Login
+- Add Doctors
+- Manage Doctors
+- View Patients
+- View Appointments
+
+## Technical Features
+
+- JWT Authentication
+- REST API Integration
+- Protected Routes
+- Responsive Design
+- Form Validation
+- Error Handling
+- Toast Notifications
+
+---
+
+# 🛠 Project Setup
+
+## Prerequisites
+
+- Node.js (v18 or above)
+- npm
+- Git
+
+---
+
+## Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/Sheikh-ASif/MediQueue.git
+```
+
+Move into frontend
+
+```bash
+cd frontend
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start development server
+
+```bash
+npm run dev
+```
+
+---
+
+# 🔐 Environment Variables
+
+The frontend communicates with the backend API.
+
+Update the backend API URL if required.
+
+Example:
+
+```env
+VITE_BACKEND_URL=http://localhost:4000
+```
+
+---
+
+# 🗄 Database
+
+This project currently uses **MongoDB** through the backend.
+
+Database schema is available inside:
+
+```
+backend/models/
+```
+
+- userModel.js
+- doctorModel.js
+- appointmentModel.js
+
+---
+
+# 🌱 Sample Data
+
+No automated seed script is included.
+
+Sample doctor records are available in:
+
+```
+frontend/src/assets/assets.js
+```
+
+This file contains predefined doctor data used during development.
+
+---
+
+# 🔑 Login Credentials
+
+## Admin
+
+Email
+
+```
+admin@mediqueue.com
+```
+
+Password
+
+```
+Admin@123
+```
+
+## Patient
+
+Create a new patient account using the registration page.
+
+---
+
+# 📄 API Documentation
+
+A Postman Collection is included with the project.
+
+Import the exported JSON collection into Postman to test all available APIs.
+
+---
+
+# 📱 Android APK
+
+This project is implemented as a React.js web application.
+
+No Android APK is included in this submission.
+
+---
+
+# 📌 Notes
+
+This submission represents the current implementation of MediQueue.
+
+The original assessment requested:
+
+- React Native
+- MySQL
+- Seeder Scripts
+- Android APK
+
+The current implementation uses:
+
+- React.js
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+
+---
+
+# 👨‍💻 Author
+
+**Md Asif Sheikh**
+
+GitHub:
+https://github.com/Sheikh-ASif
+
+
+
+
+
+<!-- 🏥 MediQueue - Frontend Application
 
 # Overview
 
@@ -119,4 +374,4 @@ frontend/
 - Typography – Consistent font scales and weights
 - Spacing – Standardized spacing system
 - Responsive Breakpoints – Mobile-first responsive design
-- Components – Reusable component classes for buttons, cards, and forms
+- Components – Reusable component classes for buttons, cards, and forms -->
